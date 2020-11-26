@@ -9,12 +9,10 @@ import SwiftUI
 
 @main
 struct Kino_App04App: App {
-    let persistenceController = PersistenceController.shared
-
+    let context = PersistentCloudKitContainer.persistentContainer.viewContext
     var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-        }
+            WindowGroup {
+                    ContentView().environment(\.managedObjectContext, context)
+            }
     }
 }

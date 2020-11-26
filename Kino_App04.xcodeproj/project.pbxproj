@@ -13,6 +13,8 @@
 		B56CED10256F20E2009D33D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56CED0F256F20E2009D33D3 /* Preview Assets.xcassets */; };
 		B56CED12256F20E2009D33D3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CED11256F20E2009D33D3 /* Persistence.swift */; };
 		B56CED15256F20E2009D33D3 /* Kino_App04.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B56CED13256F20E2009D33D3 /* Kino_App04.xcdatamodeld */; };
+		B56CED23256F2569009D33D3 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CED22256F2569009D33D3 /* DetailView.swift */; };
+		B56CED26256F26B6009D33D3 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CED25256F26B6009D33D3 /* AddView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		B56CED11256F20E2009D33D3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B56CED14256F20E2009D33D3 /* Kino_App04.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kino_App04.xcdatamodel; sourceTree = "<group>"; };
 		B56CED16256F20E2009D33D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B56CED22256F2569009D33D3 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		B56CED25256F26B6009D33D3 /* AddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			children = (
 				B56CED08256F20E0009D33D3 /* Kino_App04App.swift */,
 				B56CED0A256F20E0009D33D3 /* ContentView.swift */,
+				B56CED22256F2569009D33D3 /* DetailView.swift */,
+				B56CED25256F26B6009D33D3 /* AddView.swift */,
 				B56CED0C256F20E2009D33D3 /* Assets.xcassets */,
 				B56CED11256F20E2009D33D3 /* Persistence.swift */,
 				B56CED16256F20E2009D33D3 /* Info.plist */,
@@ -145,8 +151,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B56CED15256F20E2009D33D3 /* Kino_App04.xcdatamodeld in Sources */,
+				B56CED26256F26B6009D33D3 /* AddView.swift in Sources */,
 				B56CED12256F20E2009D33D3 /* Persistence.swift in Sources */,
 				B56CED0B256F20E0009D33D3 /* ContentView.swift in Sources */,
+				B56CED23256F2569009D33D3 /* DetailView.swift in Sources */,
 				B56CED09256F20E0009D33D3 /* Kino_App04App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
