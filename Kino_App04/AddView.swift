@@ -30,7 +30,7 @@ struct AddView: View {
                     Button("Save") {
                        let newFilm = Film(context: self.moc)
                         newFilm.title = self.title
-                        newFilm.movieId = Int16(self.input) ?? 0
+                        newFilm.movieId = Int32(self.input) ?? 0
                          
                         
                         try? self.moc.save()
