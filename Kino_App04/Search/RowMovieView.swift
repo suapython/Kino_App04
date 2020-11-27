@@ -37,14 +37,6 @@ struct RowMovieView: View {
                     Spacer()
                 }
 
-                    Button("Save to Data Model") {
-                       let newFilm = Film(context: self.moc)
-                        newFilm.title = movie.title
-                        newFilm.movieId = Int32(movie.movieId)
-
-                        try? self.moc.save()
-                        
-                    }.background(Color.red)
                     
                 HStack{
                 Text(movie.overview)

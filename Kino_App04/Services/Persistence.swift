@@ -6,16 +6,19 @@
 //
 
 import CoreData
-public class PersistentCloudKitContainer {
+public class PersistentContainer {
        
         
         // MARK: - Define Constants / Variables
         public static var context: NSManagedObjectContext {
                 return persistentContainer.viewContext
         }
-        // MARK: - Initializer
+    
+    // MARK: - Initializer
         private init() {}
-        // MARK: - Core Data stack
+        
+    
+    // MARK: - Core Data stack
         public static var persistentContainer: NSPersistentContainer = {
                 let container = NSPersistentContainer(name: "Kino_App04")
                 container.loadPersistentStores(completionHandler: { (storeDescription, error) in

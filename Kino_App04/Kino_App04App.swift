@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct Kino_App04App: App {
     @EnvironmentObject var appData: AppData
-    let context = PersistentCloudKitContainer.persistentContainer.viewContext
+    let context = PersistentContainer.persistentContainer.viewContext
     var body: some Scene {
             WindowGroup {
                     ContentView().environment(\.managedObjectContext, context)
