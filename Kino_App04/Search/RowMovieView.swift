@@ -44,12 +44,12 @@ struct RowMovieView: View {
 
                         try? self.moc.save()
                         
-                    }
+                    }.background(Color.red)
                     
                 HStack{
                 Text(movie.overview)
                 .font(.caption)
-                    .lineLimit(3)
+                    .lineLimit(2)
                     .foregroundColor(.gray)
                     Spacer()
                 }

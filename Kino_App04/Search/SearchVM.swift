@@ -80,9 +80,6 @@ extension SearchVM {
     func getPerson(query: String) {
         let urlComponents = APIClient().makeURLComponents(path: "search/person", queries:  ["query": query])
         APIClient().fetchPerson(with: urlComponents)
-           // .map { response in
-             //  response.people.map(PersonVM.init).filter {$0.profile_path != noimage}
-          //  }
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }

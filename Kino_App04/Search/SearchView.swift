@@ -54,7 +54,19 @@ struct SearchView: View {
                        
                 }
                  
+            if appData.movieDetailToShow != nil {
+                
+                MovieDetail(vm: MovieDetailVM(movieId: appData.movieDetailToShow!) )
+                    .animation(.easeIn)
+                    .transition(.opacity)
+                }
             
+            if appData.personDetailToShow != nil {
+                
+                PersonDetail(vm: PersonDetailVM(personId: appData.personDetailToShow!))
+                    .animation(.easeIn)
+                    .transition(.opacity)
+                }
                     
          }
          .foregroundColor(.white)

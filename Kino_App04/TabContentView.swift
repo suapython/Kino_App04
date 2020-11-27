@@ -15,7 +15,7 @@ struct TabContentView: View {
     
     @EnvironmentObject var appData: AppData
     
-    @State var selectedTab =  0
+    @State var selectedTab =  3
     
     
     init() {
@@ -35,7 +35,7 @@ struct TabContentView: View {
         return
         
         TabView(selection: binding) {
-            FilmsView()
+            MovieList()
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
@@ -45,6 +45,18 @@ struct TabContentView: View {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }.tag(1)
+            MyList()
+                .tabItem {
+                    Image(systemName: "equal")
+                    Text("My List")
+                }.tag(2)
+            FilmsView()
+                .tabItem {
+                    Image(systemName: "film")
+                    Text("Data")
+                }.tag(3)
+            
+            
              
         }
         .accentColor(.white)

@@ -75,7 +75,9 @@ struct Movie: Decodable, Identifiable, Equatable {
     var cast: [CastItem] {return credits?.cast.filter {$0.profile_path != nil} ?? [] }
     var directors: [CrewItem] {return credits?.crew.filter {  $0.job == "Director"} ?? []  }
     
-    //var keywords: Keywords?
+    var keywords: Keywords?
+    var keywordsM: [Keyword] {let temp = keywords != nil ? keywords!.keywords : []
+        return temp != nil ? temp! : [] }
     
     var release_dates: ReleaseDates?
     
@@ -143,7 +145,7 @@ struct Keywords: Codable {
     let keywords: [Keyword]?
 }
 
-struct Keyword: Codable, Identifiable {
+struct Keyword: Codable, Identifiable, Hashable {
     let id: Int
     let name: String
 }
