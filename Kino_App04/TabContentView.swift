@@ -19,7 +19,7 @@ struct TabContentView: View {
     
     
     init() {
-        UITabBar.appearance().isTranslucent = false
+        //UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().barTintColor = UIColor.black
     }
     
@@ -59,7 +59,7 @@ struct TabContentView: View {
             
              
         }
-        .accentColor(.white)
+        //.accentColor(.blue)
         
     }
 }

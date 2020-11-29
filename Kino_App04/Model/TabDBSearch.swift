@@ -8,15 +8,15 @@
 import Foundation
 
 
-enum TabSearch: String, Tab {
-        case movie, person 
+enum TabDBSearch: String, Tab {
+        case movies, users
     
     func title() -> String {
         switch self {
-        case .movie:
-            return "Movie"
-        case .person:
-            return "Person"
+        case .movies:
+            return "Movies"
+        case .users:
+            return "Users"
             
         }
     }

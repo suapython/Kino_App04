@@ -44,7 +44,8 @@ struct SearchView: View {
                 
                 CustomTabView(tabs: tabs, currentTab: $vm.searchFilter, action: {queryText = "" })
                         
-                SearchBar(queryText: queryTextBinding, isLoading: $vm.isLoading)
+                SearchBar(queryText: queryTextBinding)
+                          //, isLoading: $vm.isLoading)
                     .padding()
                         
                 SearchResults(vm: vm )

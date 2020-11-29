@@ -8,9 +8,7 @@
 import Foundation
 
 enum TabMovieData: Tab {
-    case cast
-    case recommend
-    case similar
+    case cast, recommend, similar
     
     func title() -> String {
         switch self {

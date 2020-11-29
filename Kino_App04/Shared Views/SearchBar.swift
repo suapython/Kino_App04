@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct SearchBar: View {
-    
-    @ObservedObject var vm = SearchVM()
+
     @Binding var queryText: String
     
     @State private var isEditing: Bool = false
-    @Binding var isLoading: Bool
+     
     
     var body: some View {
         HStack{
@@ -40,16 +39,9 @@ struct SearchBar: View {
                 if !queryText.isEmpty {
                 Button(action: {
                     queryText = ""
-                    vm.setViewState(to: .standby)
                 }, label: {
-                    if isLoading {
-                        ActivityIndicatorView()
-                    } else
-                    {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.white)
-                       // .frame(width: 35, height: 35)
-                    }
                 }).frame(width: 35, height: 35)
                 .padding(.trailing, 8)
             }
@@ -63,7 +55,6 @@ struct SearchBar: View {
                     queryText = ""
                     isEditing = false
                     hideKeyboard()
-                    vm.setViewState(to: .standby)
                 }, label: {
                     Text("Cancel")
                         .foregroundColor(.white)
@@ -86,7 +77,8 @@ struct SearchBar_Previews: PreviewProvider {
             Color.black
                 .edgesIgnoringSafeArea(.all)
             
-        SearchBar(queryText: .constant(""), isLoading: .constant(false))
+            SearchBar(queryText: .constant(""))
+                      //, isLoading: .constant(false) )
             .padding()
         }
     }

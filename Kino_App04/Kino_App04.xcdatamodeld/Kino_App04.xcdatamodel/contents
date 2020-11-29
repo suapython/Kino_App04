@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Film" representedClassName="Film" syncable="YES" codeGenerationType="class">
+    <entity name="Film" representedClassName="Film" syncable="YES">
         <attribute name="movieId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="popularity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="poster_path" optional="YES" attributeType="String"/>
@@ -19,7 +19,7 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="GenreD" representedClassName="GenreD" syncable="YES" codeGenerationType="class">
+    <entity name="GenreD" representedClassName="GenreD" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="genre" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="genre" inverseEntity="Film"/>
@@ -29,7 +29,7 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="KeywordsD" representedClassName="KeywordsD" syncable="YES" codeGenerationType="class">
+    <entity name="KeywordsD" representedClassName="KeywordsD" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="keywords" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="keywords" inverseEntity="Film"/>
@@ -39,7 +39,7 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="PersonD" representedClassName="PersonD" syncable="YES" codeGenerationType="class">
+    <entity name="PersonD" representedClassName="PersonD" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="personId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="popularity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>

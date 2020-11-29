@@ -11,7 +11,7 @@ import Combine
 
 class SearchVM: ObservableObject {
     
-    @Published var isLoading: Bool = false
+   // @Published var isLoading: Bool = false
     
     @Published var viewState: ViewState = ViewState.standby
     
@@ -109,7 +109,7 @@ extension SearchVM {
         public func setViewState(to state: ViewState) {
             DispatchQueue.main.async {
                 self.viewState = state
-                self.isLoading = state == .loading
+              //  self.isLoading = state == .loading
             }
         }
         
