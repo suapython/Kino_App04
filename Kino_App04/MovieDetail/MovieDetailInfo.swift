@@ -28,7 +28,7 @@ struct MovieDetailInfo: View {
         LazyVStack(spacing:10 ){
             
            
-            LazyVStack(spacing: 5)   {
+            LazyVStack(spacing: 0)   {
                  
             HStack{
                 
@@ -54,47 +54,29 @@ struct MovieDetailInfo: View {
                     .lineLimit(2)
                     Spacer()
                 }
-                
-            
-
-            
-            
-        
             }
+        
             HStack {
-                Spacer()
+               
             PlayButton(text: "Play", imageName: "play.fill", backgroundColor: .red) {
                 appData.showingVideoPlayer = true
                 print("playing")
             }
-            
-            
             Spacer()
-                
-                SmallVerticalButton(text: "My List", isOnImage: "checkmark", isOffImage: "plus", isOn:  isOnMyList){
+            SmallVerticalButton(text: "My List", isOnImage: "checkmark", isOffImage: "plus", isOn:  isOnMyList){
                     if isOnMyList {
                         appData.myList = appData.myList.filter { $0 != movie }
-                        CoreDataManager.shared.deleteFilm(title: movie.title)
-                        isOnMyList.toggle()
-                       
-                    }
+                       // CoreDataManager.shared.deleteFilm(title: movie.title)
+                        isOnMyList.toggle() }
                     else {
                         appData.myList.append(movie)
-                        CoreDataManager.shared.saveFilm(movie: movie)
+                       // CoreDataManager.shared.saveFilm(movie: movie)
                         isOnMyList.toggle()
-                        
-                    }
-                    print("mylist", appData.myList.count)
-                    
-            }
+                    }}
                 Spacer()
             }
             
-            
-            
-            
-            
-            LazyVStack(spacing: 0)   {
+        LazyVStack(spacing: 0)   {
                 HStack{ Text("Cast:")
                     ScrollView(.horizontal){
                         HStack {
@@ -132,22 +114,21 @@ struct MovieDetailInfo: View {
                 
             }
             .font(.caption)
-           
-           
-            
-            
         
-    }
-        .foregroundColor(.white)
+            }.foregroundColor(.white)
+            
+        }
+        
+            
     }
     
-}
+ 
 
 struct MovieDetailInfo_Previews: PreviewProvider {
     static var previews: some View {
         ZStack { Color.black
             .edgesIgnoringSafeArea(.all)
-            MovieDetailInfo(movie: exampleMovie)
+            MovieDetailInfo(movie: exampleMovie).environmentObject(AppData())
         }
     }
 }

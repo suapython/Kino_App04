@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import CoreData
+import SwiftUI
 
  
 
@@ -78,15 +79,91 @@ public class CoreDataManager {
         film.year = movie.year
         film.poster_path = movie.poster_path
         
+        
+        
+        for item in movie.cast {
+            let newCast = PersonD(context: self.moc)
+            newCast.name = item.name
+            newCast.personId = Int32(item.id)
+            newCast.popularity = item.popularity ?? 0
+            newCast.setValue(NSSet(object: film), forKey: "cast")
+            mocSave()   }
+        
+        for item in movie.directors {
+            let newDirector = PersonD(context: self.moc)
+            newDirector.name = item.name
+            newDirector.personId = Int32(item.id)
+            newDirector.popularity = item.popularity ?? 0
+            newDirector.setValue(NSSet(object: film), forKey: "director")
+            mocSave()   }
+        
+        for item in movie.genresM {
+            let newGenre = GenreD(context: self.moc)
+            newGenre.name = item.name
+            newGenre.id = Int32(item.id)
+            newGenre.setValue(NSSet(object: film), forKey: "genre")
+            mocSave()   }
+        
+        for item in movie.keywordsM {
+            let newKeyword = KeywordsD(context: self.moc)
+            newKeyword.name = item.name
+            newKeyword.id = Int32(item.id)
+            newKeyword.setValue(NSSet(object: film), forKey: "keywords")
+            mocSave()        }
+        
+        for item in movie.similarM.movies {
+            let newSimilar = Film(context: self.moc)
+            newSimilar.title = item.title
+            newSimilar.movieId = Int32(item.movieId)
+            newSimilar.setValue(NSSet(object: film), forKey: "similar")
+            mocSave()        }
+       
+        for item in movie.recommendationsM.movies {
+            let newSimilar = Film(context: self.moc)
+            newSimilar.title = item.title
+            newSimilar.movieId = Int32(item.movieId)
+            newSimilar.setValue(NSSet(object: film), forKey: "recommendations")
+            mocSave()        }
+        
+        
+        
+    }
+    
+    func mocSave() {
         do {
             try self.moc.save()
         } catch let error as NSError {
             print(error)
         }
-        
     }
+
+    
+
     
 }
+
+
+struct PreviewCoreDataWrapper<Content: View>: View {
+  let content: (NSManagedObjectContext) -> Content
+
+  var body: some View {
+    let managedObjectContext =  PersistentContainer.persistentContainer.viewContext
+
+    let film = Film(context: managedObjectContext)
+    film.title = "I Am Legend"
+    film.movieId = 100
+
+    return self.content(managedObjectContext)
+  }
+
+    init(@ViewBuilder content: @escaping (NSManagedObjectContext) -> Content) {
+        self.content = content
+      }
+    
+}
+
+
+
 
 func getCoreDataDBPath() {
         let path = FileManager
@@ -99,3 +176,4 @@ func getCoreDataDBPath() {
 
         print("Core Data DB Path :: \(path ?? "Not found")")
     }
+

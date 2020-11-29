@@ -38,7 +38,7 @@ struct MovieDetail: View {
                                  .frame(width: screen.width)
                                  .padding(.top,-70)
                              
-                             CustomTabView(tabs: tabs, currentTab: $movieTab, action: {}  )
+                            CustomTabView(tabs: tabs, currentTab: $movieTab, action: {}  ).padding()
                              
                  switch movieTab {
                  case .cast:
@@ -48,8 +48,9 @@ struct MovieDetail: View {
                  case .similar:
                      RowMovies(movies: vm.movie.similarM.movies )
                              }
+                            
                              
-                         }
+                         }.padding(5)
                      }
                  Spacer()
                  }
@@ -87,6 +88,6 @@ struct CloseButton: View {
 
 struct MovieDetail_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetail(vm: MovieDetailVM(movieId: 11030) )
+        MovieDetail(vm: MovieDetailVM(movieId: 11030) ).environmentObject(AppData())
     }
 }

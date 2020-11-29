@@ -76,8 +76,9 @@ struct Movie: Decodable, Identifiable, Equatable {
     var directors: [CrewItem] {return credits?.crew.filter {  $0.job == "Director"} ?? []  }
     
     var keywords: Keywords?
-    var keywordsM: [Keyword] {let temp = keywords != nil ? keywords!.keywords : []
-        return temp != nil ? temp! : [] }
+    var keywordsM: [Keyword] {var temp: [Keyword] = []
+        if keywords != nil && keywords!.keywords != nil {temp = keywords!.keywords!}
+        return temp   }
     
     var release_dates: ReleaseDates?
     
@@ -171,6 +172,7 @@ struct CastItem: Decodable, Identifiable {
     let character: String
     let name: String
     let profile_path: String?
+    let popularity: Float?
     
 }
 
@@ -178,6 +180,7 @@ struct CrewItem: Decodable, Identifiable {
     let id: Int
     let name: String
     let job: String
+    let popularity: Float?
     
 }
 

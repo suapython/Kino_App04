@@ -23,8 +23,8 @@ import SwiftUI
                           genres: [Genre(id: 28, name: "Action"), Genre(id: 53, name: "Thriller")],
                           similar: MovieResponse(movies: []),
                           recommendations: MovieResponse(movies: []),
-                          credits: Credits(cast: [CastItem(id: 62, character: "Chalmers", name: "Bruce Willis", profile_path:  "/A1XBu3CffBpSK8HEIJM8q7Mn4lz.jpg")],
-                          crew: [CrewItem(id: 17210, name: "George Furla", job: "Producer")]),
+                          credits: Credits(cast: [CastItem(id: 62, character: "Chalmers", name: "Bruce Willis", profile_path:  "/A1XBu3CffBpSK8HEIJM8q7Mn4lz.jpg", popularity: 0)],
+                                           crew: [CrewItem(id: 17210, name: "George Furla", job: "Producer", popularity: 0)]),
                           release_dates: ReleaseDates(results: [ReleaseDate(iso_3166_1: "US", release_dates: [Certification(certification: "MA15+")])]),
                           videos: VideoResponse(results: [
                                                     Videos(id: "5dad5e43ae366800129b1caf",
@@ -51,7 +51,7 @@ var exampleMovie2 = Movie(id: 11030,
 
 
 
-var exampleCastItem1 = CastItem(id: 62, character: "Chalmers", name: "Bruce Willis", profile_path:  "/A1XBu3CffBpSK8HEIJM8q7Mn4lz.jpg")
+var exampleCastItem1 = CastItem(id: 62, character: "Chalmers", name: "Bruce Willis", profile_path:  "/A1XBu3CffBpSK8HEIJM8q7Mn4lz.jpg", popularity: 0)
     
 
 var emptyMovie = Movie(
