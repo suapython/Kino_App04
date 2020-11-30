@@ -28,6 +28,53 @@ extension Film {
     @NSManaged public var keywords: NSSet?
     @NSManaged public var recommendations: NSSet?
     @NSManaged public var similar: NSSet?
+    
+    public var titleW: String {return title ?? "N/A"}
+    public var vote_averageW: Float {return vote_average ?? 0}
+    public var yearW: String {return year ?? "N/A"}
+    public var poster_pathW: String {return poster_path ?? "N/A"}
+    
+     
+    
+    public var castW: [PersonD] {
+                let set = cast as? Set<PersonD> ?? []
+                return set.sorted {
+                    $0.nameW < $1.nameW
+                }
+            }
+    public var directorW: [PersonD] {
+            let set = director as? Set<PersonD> ?? []
+            return set.sorted {
+                $0.nameW < $1.nameW
+            }
+        }
+    public var genreW: [GenreD] {
+            let set = genre as? Set<GenreD> ?? []
+            return set.sorted {
+                $0.nameW < $1.nameW
+            }
+        }
+    public var keywordsW: [KeywordsD] {
+            let set = keywords as? Set<KeywordsD> ?? []
+            return set.sorted {
+                $0.nameW < $1.nameW
+            }
+        }
+    public var similarW: [Film] {
+            let set = similar as? Set<Film> ?? []
+            return set.sorted {
+                $0.titleW < $1.titleW
+            }
+        }
+    public var recommendationsW: [Film] {
+            let set = recommendations as? Set<Film> ?? []
+            return set.sorted {
+                $0.titleW < $1.titleW
+            }
+        }
+    
+    
+    
 
 }
 

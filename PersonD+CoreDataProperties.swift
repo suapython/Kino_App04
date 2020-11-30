@@ -21,6 +21,8 @@ extension PersonD {
     @NSManaged public var popularity: Float
     @NSManaged public var cast: NSSet?
     @NSManaged public var director: NSSet?
+    
+    public var nameW: String {return name ?? "N/A"}
 
 }
 

@@ -19,6 +19,9 @@ extension GenreD {
     @NSManaged public var id: Int32
     @NSManaged public var name: String?
     @NSManaged public var genre: NSSet?
+    
+    public var nameW: String {return name ?? "N/A"}
+     
 
 }
 

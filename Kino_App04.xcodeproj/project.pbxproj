@@ -200,7 +200,6 @@
 		B56CED29256F2A0F009D33D3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B5CBA814257468DE00D83BF3 /* DB */,
 				B56CED2A256F2A0F009D33D3 /* AppData.swift */,
 				B56CED2B256F2A0F009D33D3 /* Movie.swift */,
 				B56CED2C256F2A0F009D33D3 /* Person.swift */,
@@ -210,6 +209,7 @@
 				B56CED2E256F2A0F009D33D3 /* TabMovieData.swift */,
 				B56CED2F256F2A0F009D33D3 /* TabCategory.swift */,
 				B56CED31256F2A0F009D33D3 /* TabApp.swift */,
+				B5CBA814257468DE00D83BF3 /* DB */,
 			);
 			path = Model;
 			sourceTree = "<group>";
