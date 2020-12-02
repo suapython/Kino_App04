@@ -2,7 +2,7 @@
 //  Film+CoreDataProperties.swift
 //  Kino_App04
 //
-//  Created by jose francisco morales on 30/11/2020.
+//  Created by jose francisco morales on 02/12/2020.
 //
 //
 
@@ -22,6 +22,7 @@ extension Film {
     @NSManaged public var title: String?
     @NSManaged public var vote_average: Float
     @NSManaged public var year: String?
+    @NSManaged public var castArray: [String]?
     @NSManaged public var cast: NSSet?
     @NSManaged public var director: NSSet?
     @NSManaged public var genre: NSSet?
@@ -34,7 +35,8 @@ extension Film {
     public var yearW: String {return year ?? "N/A"}
     public var poster_pathW: String {return poster_path ?? "N/A"}
     
-     
+    
+    
     
     public var castW: [PersonD] {
                 let set = cast as? Set<PersonD> ?? []
@@ -72,9 +74,8 @@ extension Film {
                 $0.titleW < $1.titleW
             }
         }
-    
-    
-    
+
+
 
 }
 

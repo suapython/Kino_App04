@@ -79,7 +79,10 @@ public class CoreDataManager {
         film.year = movie.year
         film.poster_path = movie.poster_path
         
-        
+        film.castArray = []
+        for item in movie.cast {
+            film.castArray!.append(item.name)
+                 }
         
         for item in movie.cast {
             let newCast = PersonD(context: self.moc)

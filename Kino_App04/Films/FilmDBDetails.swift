@@ -31,13 +31,10 @@ struct FilmDBDetails: View {
                 .font(.caption)
                  
         
-        
+            
             HStack{ Text("Cast:")
                 ScrollView(.horizontal){
-                    HStack {
-                        ForEach(film.castW) {cast in
-                            Text("\(cast.nameW) ")}
-                    }
+                    Text(film.castArray!.joined(separator: ", "))
                 }
             }  
            

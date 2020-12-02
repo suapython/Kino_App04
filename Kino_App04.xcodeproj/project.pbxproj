@@ -63,12 +63,12 @@
 		B5CBA7692573A3FA00D83BF3 /* TabDBSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA7682573A3FA00D83BF3 /* TabDBSearch.swift */; };
 		B5CBA81D2574693700D83BF3 /* PersonD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA8152574693700D83BF3 /* PersonD+CoreDataClass.swift */; };
 		B5CBA81E2574693700D83BF3 /* PersonD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA8162574693700D83BF3 /* PersonD+CoreDataProperties.swift */; };
-		B5CBA81F2574693700D83BF3 /* Film+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA8172574693700D83BF3 /* Film+CoreDataClass.swift */; };
-		B5CBA8202574693700D83BF3 /* Film+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA8182574693700D83BF3 /* Film+CoreDataProperties.swift */; };
 		B5CBA8212574693700D83BF3 /* GenreD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA8192574693700D83BF3 /* GenreD+CoreDataClass.swift */; };
 		B5CBA8222574693700D83BF3 /* GenreD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA81A2574693700D83BF3 /* GenreD+CoreDataProperties.swift */; };
 		B5CBA8232574693700D83BF3 /* KeywordsD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA81B2574693700D83BF3 /* KeywordsD+CoreDataClass.swift */; };
 		B5CBA8242574693700D83BF3 /* KeywordsD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA81C2574693700D83BF3 /* KeywordsD+CoreDataProperties.swift */; };
+		B5CBA82A257833C600D83BF3 /* Film+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA828257833C600D83BF3 /* Film+CoreDataClass.swift */; };
+		B5CBA8332578373700D83BF3 /* Film+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CBA8322578373700D83BF3 /* Film+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,12 +129,12 @@
 		B5CBA7682573A3FA00D83BF3 /* TabDBSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabDBSearch.swift; sourceTree = "<group>"; };
 		B5CBA8152574693700D83BF3 /* PersonD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B5CBA8162574693700D83BF3 /* PersonD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		B5CBA8172574693700D83BF3 /* Film+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Film+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		B5CBA8182574693700D83BF3 /* Film+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Film+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		B5CBA8192574693700D83BF3 /* GenreD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenreD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B5CBA81A2574693700D83BF3 /* GenreD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenreD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		B5CBA81B2574693700D83BF3 /* KeywordsD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeywordsD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B5CBA81C2574693700D83BF3 /* KeywordsD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeywordsD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		B5CBA828257833C600D83BF3 /* Film+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Film+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B5CBA8322578373700D83BF3 /* Film+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Film+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,10 +318,10 @@
 		B5CBA814257468DE00D83BF3 /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				B5CBA8322578373700D83BF3 /* Film+CoreDataProperties.swift */,
+				B5CBA828257833C600D83BF3 /* Film+CoreDataClass.swift */,
 				B5CBA8152574693700D83BF3 /* PersonD+CoreDataClass.swift */,
 				B5CBA8162574693700D83BF3 /* PersonD+CoreDataProperties.swift */,
-				B5CBA8172574693700D83BF3 /* Film+CoreDataClass.swift */,
-				B5CBA8182574693700D83BF3 /* Film+CoreDataProperties.swift */,
 				B5CBA8192574693700D83BF3 /* GenreD+CoreDataClass.swift */,
 				B5CBA81A2574693700D83BF3 /* GenreD+CoreDataProperties.swift */,
 				B5CBA81B2574693700D83BF3 /* KeywordsD+CoreDataClass.swift */,
@@ -410,16 +410,15 @@
 				B56CED41256F2A22009D33D3 /* GlobalHelpers.swift in Sources */,
 				B56CED42256F2A22009D33D3 /* Colors.swift in Sources */,
 				B56CED8F25706052009D33D3 /* MyList.swift in Sources */,
-				B5CBA81F2574693700D83BF3 /* Film+CoreDataClass.swift in Sources */,
 				B56CED9525706052009D33D3 /* MovieList.swift in Sources */,
 				B56CED61256F2B90009D33D3 /* RowMovieView.swift in Sources */,
 				B56CED53256F2B5B009D33D3 /* TabContentView.swift in Sources */,
 				B56CED8C25706052009D33D3 /* PersonDetail.swift in Sources */,
 				B56CED72256F2C9E009D33D3 /* DisplayURLImage.swift in Sources */,
+				B5CBA82A257833C600D83BF3 /* Film+CoreDataClass.swift in Sources */,
 				B5CBA8242574693700D83BF3 /* KeywordsD+CoreDataProperties.swift in Sources */,
 				B56CED12256F20E2009D33D3 /* Persistence.swift in Sources */,
 				B5CBA8232574693700D83BF3 /* KeywordsD+CoreDataClass.swift in Sources */,
-				B5CBA8202574693700D83BF3 /* Film+CoreDataProperties.swift in Sources */,
 				B56CED35256F2A0F009D33D3 /* TabSearch.swift in Sources */,
 				B56CED4C256F2A2E009D33D3 /* WebView.swift in Sources */,
 				B56CED5D256F2B90009D33D3 /* RowPersonView.swift in Sources */,
@@ -452,6 +451,7 @@
 				B56CED37256F2A0F009D33D3 /* TabCategory.swift in Sources */,
 				B56CED33256F2A0F009D33D3 /* Movie.swift in Sources */,
 				B56CEDA2257186F0009D33D3 /* FilmsDBVM.swift in Sources */,
+				B5CBA8332578373700D83BF3 /* Film+CoreDataProperties.swift in Sources */,
 				B56CED8E25706052009D33D3 /* PersonResults.swift in Sources */,
 				B56CED71256F2C9E009D33D3 /* CustomTabView.swift in Sources */,
 				B56CED73256F2C9E009D33D3 /* RowMovies.swift in Sources */,

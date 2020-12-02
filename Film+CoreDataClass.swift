@@ -2,7 +2,7 @@
 //  Film+CoreDataClass.swift
 //  Kino_App04
 //
-//  Created by jose francisco morales on 30/11/2020.
+//  Created by jose francisco morales on 02/12/2020.
 //
 //
 

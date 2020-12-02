@@ -66,11 +66,11 @@ struct MovieDetailInfo: View {
             SmallVerticalButton(text: "My List", isOnImage: "checkmark", isOffImage: "plus", isOn:  isOnMyList){
                     if isOnMyList {
                         appData.myList = appData.myList.filter { $0 != movie }
-                       // CoreDataManager.shared.deleteFilm(title: movie.title)
+                        CoreDataManager.shared.deleteFilm(title: movie.title)
                         isOnMyList.toggle() }
                     else {
                         appData.myList.append(movie)
-                       // CoreDataManager.shared.saveFilm(movie: movie)
+                        CoreDataManager.shared.saveFilm(movie: movie)
                         isOnMyList.toggle()
                     }}
                 Spacer()
