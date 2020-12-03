@@ -79,35 +79,24 @@ struct MovieDetailInfo: View {
         LazyVStack(spacing: 0)   {
                 HStack{ Text("Cast:")
                     ScrollView(.horizontal){
-                        HStack {
-                            ForEach(movie.cast) {cast in
-                                Text("\(cast.name) ")}
-                        }
+                        Text(movie.cast.map{$0.name}.joined(separator: ", "))
                     }
                 } .foregroundColor(.gray)
                 
                 HStack{ Text("Director:")
                     ScrollView(.horizontal){
-                        HStack{
-                            ForEach(movie.directors) {director in
-                                Text("\(director.name)") }
-                        }
+                        Text(movie.directors.map{$0.name}.joined(separator: ", "))
                     }
                 }.foregroundColor(.gray)
                 
                 HStack{ Text("Genres:")
-                        ScrollView(.horizontal){ HStack {
-                            ForEach(movie.genresM) {genre in
-                                Text("\(genre.name) ")
-                            }}
+                        ScrollView(.horizontal){
+                            Text(movie.genresM.map{$0.name}.joined(separator: ", "))
                         }}
               
                 HStack{ Text("Keywords:")
                     ScrollView(.horizontal){
-                        HStack {
-                            ForEach(movie.keywordsM, id: \.self) {keyword in
-                                Text("\(keyword.name) ")}
-                        }
+                        Text(movie.keywordsM.map{$0.name}.joined(separator: ", "))
                     }
                 } 
                 

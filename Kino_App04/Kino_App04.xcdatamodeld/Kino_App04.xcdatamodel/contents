@@ -1,61 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Film" representedClassName="Film" syncable="YES">
-        <attribute name="castArray" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="backdrop_path" optional="YES" attributeType="String"/>
+        <attribute name="cast" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="director" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="genres" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="keywords" optional="YES" attributeType="Transformable" customClassName="[String]"/>
         <attribute name="movieId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="popularity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="poster_path" optional="YES" attributeType="String"/>
+        <attribute name="recommendations" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="similar" optional="YES" attributeType="Transformable" customClassName="[String]"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="vote_average" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="year" optional="YES" attributeType="String"/>
-        <relationship name="cast" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PersonD" inverseName="cast" inverseEntity="PersonD"/>
-        <relationship name="director" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PersonD" inverseName="director" inverseEntity="PersonD"/>
-        <relationship name="genre" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GenreD" inverseName="genre" inverseEntity="GenreD"/>
-        <relationship name="keywords" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="KeywordsD" inverseName="keywords" inverseEntity="KeywordsD"/>
-        <relationship name="recommendations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="recommendations" inverseEntity="Film"/>
-        <relationship name="similar" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="similar" inverseEntity="Film"/>
+        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="topTen" inverseEntity="User"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="movieId"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="GenreD" representedClassName="GenreD" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="kino" optional="YES" attributeType="Transformable" customClassName="[Float]"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="genre" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="genre" inverseEntity="Film"/>
+        <relationship name="topTen" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="user" inverseEntity="Film"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
-    </entity>
-    <entity name="KeywordsD" representedClassName="KeywordsD" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="keywords" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="keywords" inverseEntity="Film"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
-    </entity>
-    <entity name="PersonD" representedClassName="PersonD" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="personId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="popularity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="cast" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="cast" inverseEntity="Film"/>
-        <relationship name="director" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="director" inverseEntity="Film"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="personId"/>
+                <constraint value="name"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Film" positionX="-63" positionY="-18" width="128" height="238"/>
-        <element name="GenreD" positionX="-45" positionY="99" width="128" height="88"/>
-        <element name="KeywordsD" positionX="-36" positionY="108" width="128" height="88"/>
-        <element name="PersonD" positionX="-63" positionY="9" width="128" height="118"/>
+        <element name="Film" positionX="-63" positionY="-18" width="128" height="253"/>
+        <element name="User" positionX="-63" positionY="9" width="128" height="118"/>
     </elements>
 </model>

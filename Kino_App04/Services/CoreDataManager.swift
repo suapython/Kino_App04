@@ -78,69 +78,43 @@ public class CoreDataManager {
         film.vote_average = movie.vote_average
         film.year = movie.year
         film.poster_path = movie.poster_path
+        film.backdrop_path = movie.backdrop_path
         
-        film.castArray = []
-        for item in movie.cast {
-            film.castArray!.append(item.name)
-                 }
-        
-        for item in movie.cast {
-            let newCast = PersonD(context: self.moc)
-            newCast.name = item.name
-            newCast.personId = Int32(item.id)
-            newCast.popularity = item.popularity ?? 0
-            newCast.setValue(NSSet(object: film), forKey: "cast")
-            mocSave()   }
-        
-        for item in movie.directors {
-            let newDirector = PersonD(context: self.moc)
-            newDirector.name = item.name
-            newDirector.personId = Int32(item.id)
-            newDirector.popularity = item.popularity ?? 0
-            newDirector.setValue(NSSet(object: film), forKey: "director")
-            mocSave()   }
-        
-        for item in movie.genresM {
-            let newGenre = GenreD(context: self.moc)
-            newGenre.name = item.name
-            newGenre.id = Int32(item.id)
-            newGenre.setValue(NSSet(object: film), forKey: "genre")
-            mocSave()   }
-        
-        for item in movie.keywordsM {
-            let newKeyword = KeywordsD(context: self.moc)
-            newKeyword.name = item.name
-            newKeyword.id = Int32(item.id)
-            newKeyword.setValue(NSSet(object: film), forKey: "keywords")
-            mocSave()        }
-        
-        for item in movie.similarM.movies {
-            let newSimilar = Film(context: self.moc)
-            newSimilar.title = item.title
-            newSimilar.movieId = Int32(item.movieId)
-            newSimilar.setValue(NSSet(object: film), forKey: "similar")
-            mocSave()        }
-       
-        for item in movie.recommendationsM.movies {
-            let newSimilar = Film(context: self.moc)
-            newSimilar.title = item.title
-            newSimilar.movieId = Int32(item.movieId)
-            newSimilar.setValue(NSSet(object: film), forKey: "recommendations")
-            mocSave()        }
-        
-        
+        film.cast = movie.cast.map { $0.name }
+        film.director = movie.directors.map { $0.name }
+        film.genres = movie.genresM.map { $0.name }
+        film.keywords = movie.keywordsM.map { $0.name }
+        film.similar = movie.similarM.movies.map { $0.title }
+        film.recommendations = movie.recommendationsM.movies.map { $0.title }
+         
+        mocSave()
         
     }
     
     func mocSave() {
+        if self.moc.hasChanges {
         do {
             try self.moc.save()
         } catch let error as NSError {
             print(error)
         }
+        }
     }
 
-    
+    func deleteAllData(entity: String)
+    {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entity)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try moc.execute(deleteRequest)
+        } catch let error as NSError {
+            print("delete error", error)
+        }
+    }
+        
+
+   
 
     
 }
@@ -155,7 +129,7 @@ struct PreviewCoreDataWrapper<Content: View>: View {
     let film = Film(context: managedObjectContext)
     film.title = "I Am Legend"
     film.movieId = 100
-
+    film.backdrop_path = "/86L8wqGMDbwURPni2t7FQ0nDjsH.jpg"
     return self.content(managedObjectContext)
   }
 
@@ -179,4 +153,7 @@ func getCoreDataDBPath() {
 
         print("Core Data DB Path :: \(path ?? "Not found")")
     }
+
+
+ 
 
