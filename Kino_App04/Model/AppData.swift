@@ -14,6 +14,5 @@ class AppData: ObservableObject {
     
     @Published var showingVideoPlayer = false
     
- 
     
 }

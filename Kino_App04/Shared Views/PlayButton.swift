@@ -44,7 +44,7 @@ struct PlayButton_Previews: PreviewProvider {
             Color.black
                 .edgesIgnoringSafeArea(.all)
         PlayButton(text: "Play", imageName: "play.fill") {
-        print("playing")
+        //print("playing")
     }
     }
     }

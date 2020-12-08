@@ -29,7 +29,7 @@ extension Film {
     @NSManaged public var recommendations: [String]?
     @NSManaged public var keywords: [String]?
     @NSManaged public var genres: [String]?
-    @NSManaged public var user: NSSet?
+    @NSManaged public var user: User?
     
     
     public var titleW: String {return title ?? "N/A"}

@@ -6,13 +6,29 @@
 //
 
 import Foundation
+import SwiftUI
 import CoreData
+import Combine
 
-//let fetchRequest = NSFetchRequest(entityName: "Film")
-//let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-//
-//do {
-//    try myPersistentStoreCoordinator.executeRequest(deleteRequest, withContext: myContext)
-//} catch let error as NSError {
-//    // TODO: handle the error
-//}
+class FilmsDBVM: ObservableObject {
+    
+    @Published var films = [FilmM]()
+
+    
+    init() {
+        fetchAllFilms()
+    }
+
+     
+    func fetchAllFilms() {
+        self.films = CoreDataManager.shared.getAllFilms().map(FilmM.init)
+    }
+    
+    func deleteItem(_ film: FilmM) {
+        CoreDataManager.shared.deleteFilm(title: film.title)
+        fetchAllFilms()
+    }
+    
+}
+
+ 

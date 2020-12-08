@@ -45,10 +45,10 @@ struct TabContentView: View {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }.tag(1)
-            MyList()
+            LoginForm()
                 .tabItem {
                     Image(systemName: "equal")
-                    Text("My List")
+                    Text("Login")
                 }.tag(2)
             FilmsDB()
                 .tabItem {

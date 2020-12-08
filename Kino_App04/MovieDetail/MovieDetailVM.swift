@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class MovieDetailVM: ObservableObject, Identifiable  {
     
@@ -14,7 +15,8 @@ class MovieDetailVM: ObservableObject, Identifiable  {
     var movieId: Int
     
     @Published var movie: Movie = emptyMovie
-    
+    @EnvironmentObject var appData: AppData
+    @Published var isOnMyList: Bool = false
     
     private var disposables = Set<AnyCancellable>()
      
@@ -31,7 +33,7 @@ extension MovieDetailVM {
     
     func getMovieDetails(movieId: Int) {
         let urlComponents = APIClient().makeURLComponents(path: "movie/\(String(movieId))" , queries: ["append_to_response": "keywords,credits,similar,recommendations,release_dates,videos" ])
-        print("url components moviedetail", urlComponents.url  )
+        //print("url components moviedetail", urlComponents.url  )
         APIClient().fetchMovieDetails(with: urlComponents)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
@@ -46,7 +48,8 @@ extension MovieDetailVM {
               receiveValue: { [weak self] value in
                 guard let self = self else { return  }
                 self.movie = value
-                print(value.videosV)
+                self.isOnMyList = self.appData.myList.contains(self.movie)
+                //print(value.videosV)
     
             })
            .store(in: &disposables)

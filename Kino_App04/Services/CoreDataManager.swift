@@ -53,6 +53,35 @@ public class CoreDataManager {
         
     }
     
+    private func fetchUser(name: String) -> User? {
+        
+        var users = [User]()
+        
+        let request: NSFetchRequest<User> = User.fetchRequest()
+        request.predicate = NSPredicate(format: "name == %@", name)
+        
+        do {
+            users = try self.moc.fetch(request)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        return users.first
+        
+    }
+    
+    func deleteUser(name: String) {
+        
+        do {
+            if let user = fetchUser(name: name) {
+                self.moc.delete(user)
+                try self.moc.save()
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+        
+    }
     
     func getAllFilms() -> [Film] {
         
@@ -70,7 +99,7 @@ public class CoreDataManager {
         
     }
     
-    func saveFilm(movie: Movie) {
+    func saveFilm(movie: Movie, userName: String) {
         
         let film = Film(context: self.moc)
         film.title = movie.title
@@ -86,10 +115,29 @@ public class CoreDataManager {
         film.keywords = movie.keywordsM.map { $0.name }
         film.similar = movie.similarM.movies.map { $0.title }
         film.recommendations = movie.recommendationsM.movies.map { $0.title }
-         
+        
+        let user = User(context: self.moc)
+        user.name = userName
+        user.addToTopTen(film)
+        
         mocSave()
         
     }
+    
+    func saveUser(user: UserData) {
+        
+        let newUser = User(context: self.moc)
+        newUser.name = user.name
+        newUser.category = user.category
+        
+        mocSave()
+        
+    }
+    
+    
+    
+    
+    
     
     func mocSave() {
         if self.moc.hasChanges {

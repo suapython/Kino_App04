@@ -2,15 +2,15 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Film" representedClassName="Film" syncable="YES">
         <attribute name="backdrop_path" optional="YES" attributeType="String"/>
-        <attribute name="cast" optional="YES" attributeType="Transformable" customClassName="[String]"/>
-        <attribute name="director" optional="YES" attributeType="Transformable" customClassName="[String]"/>
-        <attribute name="genres" optional="YES" attributeType="Transformable" customClassName="[String]"/>
-        <attribute name="keywords" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="cast" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="director" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="genres" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="keywords" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="movieId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="popularity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="poster_path" optional="YES" attributeType="String"/>
-        <attribute name="recommendations" optional="YES" attributeType="Transformable" customClassName="[String]"/>
-        <attribute name="similar" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="recommendations" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="similar" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="vote_average" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="year" optional="YES" attributeType="String"/>
@@ -24,7 +24,7 @@
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="String"/>
-        <attribute name="kino" optional="YES" attributeType="Transformable" customClassName="[Float]"/>
+        <attribute name="kino" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Float]"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="topTen" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="user" inverseEntity="Film"/>
         <uniquenessConstraints>

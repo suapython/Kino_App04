@@ -26,7 +26,7 @@ struct SearchView: View {
             queryText = $0
             vm.query = $0
             vm.setViewState(to: .loading)
-            print("query:", vm.query)
+            //print("query:", vm.query)
         }
  
         

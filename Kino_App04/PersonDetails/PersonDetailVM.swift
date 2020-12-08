@@ -32,7 +32,7 @@ extension PersonDetailVM {
     
     func getPersonDetails(personId: Int) {
         let urlComponents = APIClient().makeURLComponents(path: "person/\(String(personId))" , queries: ["append_to_response": "movie_credits" ])
-        print("url components persondetail", urlComponents.url  )
+       // print("url components persondetail", urlComponents.url  )
         APIClient().fetchPersonDetails(with: urlComponents)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in

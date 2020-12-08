@@ -57,11 +57,7 @@ struct PersonResults: View {
                                         }
                                         
                                     } .frame(height: 75)
-                                    .onAppear(){
-                                        print("cast \(vm.person.movie_credits!.cast.count)")
-                                        print("crew \(vm.person.movie_credits!.crew.count)")
-                                        print("castcrew \(movies.count)")
-                                    }
+                                     
                                     
                                 }}
                             

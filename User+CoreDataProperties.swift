@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  Kino_App04
 //
-//  Created by jose francisco morales on 02/12/2020.
+//  Created by jose francisco morales on 05/12/2020.
 //
 //
 
@@ -16,11 +16,18 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
-    @NSManaged public var image: String?
     @NSManaged public var category: String?
-    @NSManaged public var name: String?
+    @NSManaged public var image: String?
     @NSManaged public var kino: [Float]?
+    @NSManaged public var name: String?
     @NSManaged public var topTen: NSSet?
+    
+    public var topTenArray: Set<Film> {
+        return topTen as? Set<Film> ?? []}
+    
+    public var nameW: String {return name ?? "" }
+    public var categoryW: String {return category ?? "" }
+    
 
 }
 
