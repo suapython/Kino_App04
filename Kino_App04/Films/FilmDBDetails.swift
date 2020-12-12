@@ -11,13 +11,13 @@ import KingfisherSwiftUI
 
 struct FilmDBDetails: View {
     
-//    @Environment(\.managedObjectContext) var moc
+ 
     @Environment(\.presentationMode) var presentationMode
     @State private var showingDeleteAlert = false
     
     @EnvironmentObject var appData: AppData
     
-    let film: FilmM
+    let film: Film
      
     @State private var selectedRows: Set<UUID> = []
     
@@ -26,58 +26,58 @@ struct FilmDBDetails: View {
         
         GeometryReader { proxy in
             HStack {
-                KFImage(ImagePath.medium.path(poster: film.backdrop_path))
+                KFImage(ImagePath.medium.path(poster: film.backdrop_pathW))
                     .resizable()
                     .frame(width: proxy.size.width/4)
                     .padding(.leading, 3)
                     .onTapGesture(perform: {
-                        appData.movieDetailToShow = Int(film.movieId)
+                        appData.movieDetailToShow = film.movieIdW
                         appData.personDetailToShow = nil
                     })
                 
                 LazyVStack(spacing: 0)   {
                     ScrollView(.horizontal){
                         HStack{
-                     Text(film.title).bold()
+                     Text(film.titleW).bold()
                         .font(.system(size: 14))
                         .foregroundColor(.white)
-                 Text("id: \(film.movieId), year: \(film.year ?? ""), vote: \(film.vote_average, specifier: "%.1f"), popularity: \(film.popularity, specifier: "%.1f")")
+                 Text("id: \(film.movieIdW), year: \(film.yearW), vote: \(film.vote_averageW, specifier: "%.1f"), popularity: \(film.popularityW, specifier: "%.1f")")
                             .font(.caption)
                         }}
                              
                         HStack{ Text("Cast:")
                             ScrollView(.horizontal){
-                                Text(film.cast.joined(separator: ", "))
+                                Text(film.castW.joined(separator: ", "))
                             }
                         }
                        
                         HStack{ Text("Director:")
                             ScrollView(.horizontal){
-                                    Text(film.director.joined(separator: ", "))
+                                    Text(film.directorW.joined(separator: ", "))
                             }
                         }
                         
                         HStack{ Text("Genres:")
                                 ScrollView(.horizontal){
-                                    Text(film.genres.joined(separator: ", "))
+                                    Text(film.genresW.joined(separator: ", "))
                                     }
                                 }
                       
                         HStack{ Text("Keywords:")
                             ScrollView(.horizontal){
-                                Text(film.keywords.joined(separator: ", "))
+                                Text(film.keywordsW.joined(separator: ", "))
                             }
                         }
                         
                         HStack{ Text("Similar:")
                             ScrollView(.horizontal){
-                                Text(film.similar.joined(separator: ", "))
+                                Text(film.similarW.joined(separator: ", "))
                             }
                         }
                         
                         HStack{ Text("Recommendations:")
                             ScrollView(.horizontal){
-                                Text(film.recommendations.joined(separator: ", "))
+                                Text(film.recommendationsW.joined(separator: ", "))
                             }
                         }
                         
@@ -96,18 +96,23 @@ struct FilmDBDetails: View {
         
     
 
-//struct FilmDBDetails_Previews: PreviewProvider {
-//    static let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-//    
-//    static var previews: some View {
-//        
-//        
-//        let film = Film(context: moc)
-//        film.backdrop_path = "/86L8wqGMDbwURPni2t7FQ0nDjsH.jpg"
-//        film.title = "Zelig"
-//        film.movieId = 100
-//        
-//         
-//      return FilmDBDetails(film: film )
-//        }
-//}
+struct FilmDBDetails_Previews: PreviewProvider {
+
+   static var previews: some View {
+   
+   
+    var exampleFilm = Film(context: managedObjectContext)
+    exampleFilm.title = "I Am Legend"
+    exampleFilm.movieId = 100
+    
+
+   
+
+    return
+        ZStack {Color.black
+            .edgesIgnoringSafeArea(.all)
+        
+        FilmDBDetails(film: exampleFilm )
+        }
+      }
+}

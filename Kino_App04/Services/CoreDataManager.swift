@@ -10,8 +10,6 @@ import UIKit
 import CoreData
 import SwiftUI
 
- 
-
 
 public class CoreDataManager {
         
@@ -23,7 +21,7 @@ public class CoreDataManager {
         self.moc = moc
     }
     
-    private func fetchFilm(title: String) -> Film? {
+    func fetchFilm(title: String) -> Film? {
         
         var films = [Film]()
         
@@ -40,6 +38,27 @@ public class CoreDataManager {
         
     }
     
+    func fetchFilm(movieId: Int) -> Film? {
+        
+        var films = [Film]()
+        
+        let request: NSFetchRequest<Film> = Film.fetchRequest()
+        request.predicate = NSPredicate(format: "movieId ==", movieId)
+        
+        do {
+            films = try self.moc.fetch(request)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        return films.first
+        
+    }
+    
+    
+    
+    
+    
     func deleteFilm(title: String) {
         
         do {
@@ -52,6 +71,22 @@ public class CoreDataManager {
         }
         
     }
+    
+    func deleteFilm(title: String, user: User) {
+        
+        do {
+            if let film = fetchFilm(title: title) {
+                user.removeFromTopTen(film)
+                try self.moc.save()
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+        
+    }
+    
+    
+    
     
     private func fetchUser(name: String) -> User? {
         
@@ -83,6 +118,16 @@ public class CoreDataManager {
         
     }
     
+    func deleteUser(user: User) {
+        
+        self.moc.delete(user)
+        mocSave()
+        
+    }
+    
+    
+    
+    
     func getAllFilms() -> [Film] {
         
         var films = [Film]()
@@ -99,7 +144,28 @@ public class CoreDataManager {
         
     }
     
-    func saveFilm(movie: Movie, userName: String) {
+    func getAllUsers() -> [User] {
+        
+        var users = [User]()
+        
+        let userRequest: NSFetchRequest<User> = User.fetchRequest()
+        
+        do {
+            users = try self.moc.fetch(userRequest)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        return users
+        
+    }
+    
+    
+    
+    
+    
+    
+    func saveFilm(movie: Movie, user: User) {
         
         let film = Film(context: self.moc)
         film.title = movie.title
@@ -116,12 +182,10 @@ public class CoreDataManager {
         film.similar = movie.similarM.movies.map { $0.title }
         film.recommendations = movie.recommendationsM.movies.map { $0.title }
         
-        let user = User(context: self.moc)
-        user.name = userName
+        
         user.addToTopTen(film)
         
         mocSave()
-        
     }
     
     func saveUser(user: UserData) {
@@ -162,6 +226,23 @@ public class CoreDataManager {
     }
         
 
+    func filmExists(movieId: Int) -> Bool {
+        var fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Film")
+        fetchRequest.predicate = NSPredicate(format: "movieId = %d", movieId)
+
+        var results: [NSManagedObject] = []
+
+        do {
+            results = try moc.fetch(fetchRequest)
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+
+        return results.count > 0
+    }
+    
+    
    
 
     

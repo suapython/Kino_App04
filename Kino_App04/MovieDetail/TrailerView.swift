@@ -29,7 +29,7 @@ struct TrailerView: View {
             })
             VStack{
                 ForEach(videos, id: \.self){ video in
-                    WebView(videoID: video.key)
+                    YouTubeWebView(videoID: video.key)
                         .frame(width: screen.width)
                 .cornerRadius(12)
                 //.padding(.horizontal, 24)

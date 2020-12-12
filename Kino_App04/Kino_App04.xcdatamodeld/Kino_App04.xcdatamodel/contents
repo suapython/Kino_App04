@@ -14,7 +14,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="vote_average" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="year" optional="YES" attributeType="String"/>
-        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="topTen" inverseEntity="User"/>
+        <relationship name="topTen" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="topTen" inverseEntity="User"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="movieId"/>
@@ -26,7 +26,7 @@
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="kino" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Float]"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="topTen" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="user" inverseEntity="Film"/>
+        <relationship name="topTen" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="topTen" inverseEntity="Film"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="name"/>

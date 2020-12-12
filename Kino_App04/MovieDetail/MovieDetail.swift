@@ -12,20 +12,15 @@ struct MovieDetail: View {
     
     @ObservedObject var vm: MovieDetailVM
     @EnvironmentObject var appData: AppData
-    
-    let tabs: [TabMovieData] = [.cast, .recommend, .similar]
-    @State var movieTab: TabMovieData = .cast
-    let screen = UIScreen.main.bounds
-    
     @State private var showingVideoPlayer = false
-    @State var showAlert: Bool = false
-    @State var textString: String = ""
-
+    @State var movieTab: TabMovieData = .cast
     
+    let tabs: [TabMovieData] = [.cast,.recommend,.similar]
+    let screen = UIScreen.main.bounds
+
     var body: some View {
         
         let movie = vm.movie
-         
         
        return
         
@@ -33,34 +28,33 @@ struct MovieDetail: View {
             Color.black
                 .edgesIgnoringSafeArea(.all)
          
-            ZStack {
-                VStack {
+           
+            VStack {
             
-            CloseButton()
+                CloseButton()
                 
                     
                  ScrollView(.vertical, showsIndicators: false) {
                     
                          VStack{
-                                ZStack{
-//                                    
-//                                  
-//            KFImage( ImagePath.original.path(poster: movie.poster_path ?? noimage ) )
-//                                        .resizable()
-//                                        .scaledToFill()
-//                                        .clipped()
-//                                        .frame(width: screen.width)
-//                    .padding(.top,-20)
-//                                    
-//                                    VStack {
-//                                        Spacer()
-//                                        
-//            TitleInfo(movie: vm.movie)
-//                                        
-                                    RowButtons(movie: vm.movie, showingVideoPlayer: $showingVideoPlayer, showAlert: $showAlert, textString: $textString, isOnMyList: $vm.isOnMyList)
-//                                        
-//            CastInfo(movie: vm.movie)
-  //                          }.foregroundColor(.white)
+                            ZStack{
+
+                KFImage( ImagePath.original.path(poster: movie.poster_path ?? noimage ) )
+                                        .resizable()
+                                        .scaledToFill()
+                                        .clipped()
+                    .frame(width: screen.width)
+                    .padding(.top,-20)
+
+                                    VStack {
+                                        Spacer()
+
+            TitleInfo(movie: vm.movie)
+
+            RowButtons(movie: vm.movie, showingVideoPlayer: $showingVideoPlayer, isOnMyList: $vm.isOnMyList)
+
+            CastInfo(movie: vm.movie)
+                            }.foregroundColor(.white)
                             .background(LinearGradient.blackOpacityGradient)
                             .background(LinearGradient.blackOpacityGradientUp)
                             }}
@@ -71,33 +65,19 @@ struct MovieDetail: View {
             CustomTabView(tabs: tabs, currentTab: $movieTab, action: {}  ).padding()
                              
             switch movieTab {
-                case .cast:
+            case .cast:
                 RowCast(vm: vm  )
-                case .recommend:
+            case .recommend:
                 RowMovies(movies: vm.movie.recommendationsM.movies  )
-                case .similar:
+            case .similar:
                 RowMovies(movies: vm.movie.similarM.movies )
                              }
-                            
-            if self.showAlert {
-            AlertView( title: "User",message: "Save to DB",isShown: .constant(true), text: $textString, onDone:
-                { text in
-                appData.myList.append(movie)
-                 CoreDataManager.shared.saveFilm(movie: movie, userName: text)
-                    vm.isOnMyList.toggle()
-                    showAlert = false
-                    print("isOnMyLIst \(vm.isOnMyList)")
-                    })
-            }
+            
                     
                     
                              
                          }.padding(5)
-                     }
-                 Spacer()
-                 
-                
-    
+ 
                 
              }
             .sheet(isPresented: $appData.showingVideoPlayer, content: {

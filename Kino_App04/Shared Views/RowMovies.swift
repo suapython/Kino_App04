@@ -11,10 +11,11 @@ struct RowMovies: View {
     
     var movies: [Movie]
     @EnvironmentObject var appData: AppData
-
+    @State private var pressing: Bool = false
+    @State private var movieToDisplay = emptyMovie
     
     var body: some View {
-       
+        VStack{
                 ScrollView(.horizontal,showsIndicators: false) {
                     LazyHStack {
                         ForEach(movies){movie in
@@ -25,13 +26,22 @@ struct RowMovies: View {
                                     appData.movieDetailToShow = movie.id
                                     appData.personDetailToShow = nil
                                 })
+                                .onLongPressGesture(minimumDuration: 1, pressing: { value in
+                                       print("In progress: \(value)!")
+                                    movieToDisplay = movie
+                                    self.pressing = value
+                                   }) {
+                                    self.pressing = false
+                                    movieToDisplay = emptyMovie
+                                   }
+                                
                             
                         }
                     }
                 }
-                
+            if pressing {Text(movieToDisplay.title)}
             }
-            
+    }
 }
     
 
@@ -43,7 +53,7 @@ struct OtherMoviesStack_Previews: PreviewProvider {
             .edgesIgnoringSafeArea(.all)
             ScrollView(showsIndicators: false) {
                 LazyVStack{
-                    RowMovies(movies: [exampleMovie,exampleMovie2] )}}
+                    RowMovies(movies: [exampleMovie,exampleMovie2] ).environmentObject(AppData()) }}
         }
     }
 }

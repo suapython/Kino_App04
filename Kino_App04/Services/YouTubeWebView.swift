@@ -9,7 +9,7 @@
 import SwiftUI
 import WebKit
 
-struct WebView: UIViewRepresentable {
+struct YouTubeWebView: UIViewRepresentable {
     
     let videoID: String
     

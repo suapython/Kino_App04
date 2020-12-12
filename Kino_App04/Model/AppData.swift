@@ -14,5 +14,7 @@ class AppData: ObservableObject {
     
     @Published var showingVideoPlayer = false
     
+    @Published var currentUser: User = exampleUser
+    
     
 }

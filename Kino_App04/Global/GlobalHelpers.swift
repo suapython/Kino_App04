@@ -84,6 +84,7 @@ var examplePerson1 = Person(id: 1243, name: "Woody Allen", biography:"Woody Alle
  
 var emptyPerson = Person(id: 1243, name: " ", biography:" ", deathday: nil, birthday: " ", known_for_department:  "", popularity: 0, profile_path:  "")
 
+var exampleUser = User(context: managedObjectContext)
  
 
  
@@ -135,3 +136,15 @@ let Klogo: some View =     Image("redk")
 
 let exampleVideoURL =   "https://bit.ly/swswift"
 let exampleImageURL =  "https://picsum.photos/300/104"
+
+let managedObjectContext = PersistentContainer.persistentContainer.viewContext
+
+
+
+let red = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
+let green = UIColor(red: 0, green: 1, blue: 0, alpha: 1)
+let blue = UIColor(red: 0, green: 0, blue: 1, alpha: 1)
+let col2 = UIColor(hue: 0, saturation: 0.66, brightness: 0.66, alpha: 1)
+let col3 = UIColor(hue: 0.25, saturation: 0.66, brightness: 0.66, alpha: 1)
+let col4 = UIColor(hue: 0.5, saturation: 0.66, brightness: 0.66, alpha: 1)
+let col5 = UIColor(hue: 0.75, saturation: 0.66, brightness: 0.66, alpha: 1)

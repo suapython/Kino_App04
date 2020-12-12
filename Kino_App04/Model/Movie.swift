@@ -28,79 +28,63 @@ struct Movie: Decodable, Identifiable, Equatable {
     }
     
     let id: Int
-    var movieId: Int {return id}
-    
     let original_title: String
     let title: String
-    var userTitle: String {
-        return AppUserDefaults.alwaysOriginalTitle ?  original_title : title
-    }
-    
     let overview: String
     let poster_path: String?
-    var poster_pathM: String {
-         poster_path ?? noimage
-    }
     let backdrop_path: String?
-    var backdrop_pathM: String { return  backdrop_path ?? noimage }
-    
-    
     let popularity: Float
     let vote_average: Float
     let vote_count: Int
     let runtime: Int?
-    var runtimeM: String? {return runtime != nil ? String( runtime!)+"mts" : nil  }
-    
     var release_date: String?
+    var production_countries: [productionCountry]?
+    var genres: [Genre]?
+    var similar: MovieResponse?
+    var recommendations: MovieResponse?
+    var credits: Credits?
+    var cast: [CastItem] {return credits?.cast.filter {$0.profile_path != nil} ?? [] }
+    var directors: [CrewItem] {return credits?.crew.filter {  $0.job == "Director"} ?? []  }
+    var keywords: Keywords?
+    var release_dates: ReleaseDates?
+    var videos: VideoResponse?
+    
+    
+    var movieId: Int {return id}
+    var userTitle: String {
+        return AppUserDefaults.alwaysOriginalTitle ?  original_title : title }
+    var poster_pathM: String { poster_path ?? noimage}
+    var backdrop_pathM: String { return  backdrop_path ?? noimage }
+    var runtimeM: String? {return runtime != nil ? String( runtime!)+"mts" : nil  }
     var year: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         if release_date == nil {return ""} else {
         let date = formatter.date(from: release_date!)
         formatter.dateFormat = "yyyy"
-            return formatter.string(from: date ?? Date() )}
-    }
- 
-    var production_countries: [productionCountry]?
+            return formatter.string(from: date ?? Date() )}  }
     var production_countriesM: [productionCountry] { return  production_countries ?? [] }
-    
-    var genres: [Genre]?
     var genresM: [Genre] { return  genres ?? [] }
-    
-    var similar: MovieResponse?
     var similarM: MovieResponse  { return  similar ?? MovieResponse(movies: []) }
-    var recommendations: MovieResponse?
     var recommendationsM: MovieResponse  { return  recommendations ?? MovieResponse(movies: []) }
-    var credits: Credits?
-    var cast: [CastItem] {return credits?.cast.filter {$0.profile_path != nil} ?? [] }
-    var directors: [CrewItem] {return credits?.crew.filter {  $0.job == "Director"} ?? []  }
-    
-    var keywords: Keywords?
     var keywordsM: [Keyword] {var temp: [Keyword] = []
         if keywords != nil && keywords!.keywords != nil {temp = keywords!.keywords!}
         return temp   }
-    
-    var release_dates: ReleaseDates?
-    
-    var MPAA: String? {
-    
-        let temp = release_dates?.results.filter{($0.iso_3166_1 == "US") || ($0.iso_3166_1 == "IT")}
-        
+    var MPAA: String? { let temp = release_dates?.results.filter{($0.iso_3166_1 == "US") || ($0.iso_3166_1 == "IT")}
         if temp != nil {
                 if !temp!.isEmpty {
                    return  temp![0].release_dates[0].certification
                 } else {return nil}
         } else {return nil}
               }
-    
-    var videos: VideoResponse?
     var videosV: [Videos] { if videos == nil {return []} else
-    {return videos!.results.filter{$0.type == "Trailer"}}    }
+        {return videos!.results.filter{$0.type == "Trailer"}}    }
 }
+
 
 struct VideoResponse: Decodable {
     var results: [Videos]
-   
+    
 }
 
 struct Videos: Decodable, Hashable {

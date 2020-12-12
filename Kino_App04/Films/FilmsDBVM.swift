@@ -12,7 +12,7 @@ import Combine
 
 class FilmsDBVM: ObservableObject {
     
-    @Published var films = [FilmM]()
+    @Published var films = [Film]()
 
     
     init() {
@@ -21,11 +21,11 @@ class FilmsDBVM: ObservableObject {
 
      
     func fetchAllFilms() {
-        self.films = CoreDataManager.shared.getAllFilms().map(FilmM.init)
+        self.films = CoreDataManager.shared.getAllFilms()
     }
     
-    func deleteItem(_ film: FilmM) {
-        CoreDataManager.shared.deleteFilm(title: film.title)
+    func deleteItem(_ film: Film) {
+        CoreDataManager.shared.deleteFilm(title: film.titleW)
         fetchAllFilms()
     }
     

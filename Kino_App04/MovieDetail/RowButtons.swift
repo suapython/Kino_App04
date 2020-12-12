@@ -13,8 +13,6 @@ struct RowButtons: View {
         @EnvironmentObject var appData: AppData
         
         @Binding var showingVideoPlayer: Bool
-        @Binding var showAlert: Bool
-        @Binding var textString: String
         @Binding var isOnMyList: Bool
         
         var body: some View {
@@ -27,16 +25,16 @@ struct RowButtons: View {
             HStack {
                 Spacer()
                 SmallVerticalButton(text: "My List", isOnImage: "checkmark", isOffImage: "plus", isOn:  isOnMyList){
-                    print("clicked")
                     if isOnMyList {
-                        appData.myList = appData.myList.filter { $0 != movie }
-                        CoreDataManager.shared.deleteFilm(title: movie.title)
+                        //appData.myList = appData.myList.filter { $0 != movie }
+                        CoreDataManager.shared.deleteFilm(title: movie.title, user: appData.currentUser)
+                        
                         isOnMyList.toggle()
-            print("not show alert",showAlert )
                     }
                     else {
-                        print("show alert",showAlert)
-                        showAlert = true
+                        CoreDataManager.shared.saveFilm(movie: movie, user: appData.currentUser)
+                        
+                        isOnMyList.toggle()
                     }}
                 Spacer()
                 
@@ -62,7 +60,7 @@ struct RowButtons_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {Color.black
             .edgesIgnoringSafeArea(.all)
-            RowButtons(movie: exampleMovie, showingVideoPlayer: .constant(false), showAlert: .constant(false), textString: .constant(""), isOnMyList: .constant(false))
+            RowButtons(movie: exampleMovie, showingVideoPlayer: .constant(false), isOnMyList: .constant(false))
         }
     }
 }

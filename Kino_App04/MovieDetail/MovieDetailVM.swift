@@ -17,6 +17,7 @@ class MovieDetailVM: ObservableObject, Identifiable  {
     @Published var movie: Movie = emptyMovie
     @EnvironmentObject var appData: AppData
     @Published var isOnMyList: Bool = false
+    @Published var film: Film?
     
     private var disposables = Set<AnyCancellable>()
      
@@ -24,6 +25,9 @@ class MovieDetailVM: ObservableObject, Identifiable  {
         self.movieId = movieId
         getMovieDetails(movieId: movieId)
         
+        isOnMyList = CoreDataManager.shared.filmExists(movieId: movieId)
+        print(isOnMyList)
+         
     }
     
 }
@@ -48,8 +52,6 @@ extension MovieDetailVM {
               receiveValue: { [weak self] value in
                 guard let self = self else { return  }
                 self.movie = value
-                self.isOnMyList = self.appData.myList.contains(self.movie)
-                //print(value.videosV)
     
             })
            .store(in: &disposables)

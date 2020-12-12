@@ -15,6 +15,8 @@ struct MovieList: View {
     var tabs: [TabCategory] = [.popular, .topRated,.trending, .upcoming, .nowPlaying ]
     
     let screen = UIScreen.main.bounds
+    
+   
      
      
 //

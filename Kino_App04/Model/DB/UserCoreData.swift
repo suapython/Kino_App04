@@ -1,14 +1,17 @@
 //
-//  User+CoreDataProperties.swift
+//  UserM.swift
 //  Kino_App04
 //
-//  Created by jose francisco morales on 05/12/2020.
-//
+//  Created by jose francisco morales on 08/12/2020.
 //
 
 import Foundation
 import CoreData
 
+@objc(User)
+public class User: NSManagedObject {
+
+}
 
 extension User {
 
@@ -22,14 +25,16 @@ extension User {
     @NSManaged public var name: String?
     @NSManaged public var topTen: NSSet?
     
-    public var topTenArray: Set<Film> {
-        return topTen as? Set<Film> ?? []}
-    
-    public var nameW: String {return name ?? "" }
-    public var categoryW: String {return category ?? "" }
-    
+    var topTenArray: [Film] {
+        let set = topTen as? Set<Film> ?? []
+        return set.sorted {
+            $0.movieId < $1.movieId
+        }
+    }
 
+    
 }
+
 
 // MARK: Generated accessors for topTen
 extension User {
@@ -50,4 +55,16 @@ extension User {
 
 extension User : Identifiable {
 
+}
+
+ 
+extension User {
+    
+    var categoryW: String {return category ?? ""}
+    var imageW : String {return image ?? "noimage"}
+    var kinoW: [Float] {return kino ?? [0,0,0]}
+    var nameW: String {return name ?? ""}
+    var topTenArrayW: [Film] { let set = topTen as? Set<Film> ?? []
+                               return Array(set)   }
+        
 }

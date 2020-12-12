@@ -10,140 +10,139 @@ import CoreData
 
 struct LoginForm: View {
     
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: User.entity(), sortDescriptors: [
-        NSSortDescriptor(keyPath: \User.name, ascending: true) ]) var users: FetchedResults<User>
-    
-    
     @State var userInput = UserData()
     
-    let tabs: [TabLogin] = [.add, .remove]
-    @State var loginTab: TabLogin = .remove
+    let tabs: [TabLogin] = [.users,.add ]
+    @State var loginTab: TabLogin = .users
 
     
     @EnvironmentObject var appData: AppData
+    @ObservedObject var vm = LoginFormVM()
     
-   
-    @State var selection = Set<User>()
-    @State var editMode = EditMode.inactive
-     
-    
+
     var body: some View {
         
-         
-        
-        return
         
         ZStack {
-           Color.black
-               .edgesIgnoringSafeArea(.all)
-        
-        
-        VStack{
-        
-        CustomTabView(tabs: tabs, currentTab: $loginTab, action: {}  ).padding()
-             
-        Spacer()
-        switch loginTab {
-            case .add:
-                VStack{
-                NavigationView {
-                   
-                            Form {
-                          TextField("Name", text: $userInput.name)
-                                
-                          Picker(selection: $userInput.category,
-                                       label: Text("Category")) {
-                                        ForEach(Category.allCategories, id: \.self) { category in
-                                            Text(category).tag(category)
-                                        }
-                                }
-                                
-                                
-                                
-                            }.navigationBarTitle(Text("Profile"))
-                }
-                
-                    Button(action: {CoreDataManager.shared.saveUser(user: userInput)}) {LoginButtonContent() }
-                }
-             
-            case .remove:
-                
-                VStack{
-                    
-               NavigationView {
-                   
-//                    ScrollView(.vertical,showsIndicators: false) {
-                List(users) {_ in 
-                            ForEach(users, id: \.self) { user in
-                                UserDBDetails(user: user)
-                            }
-                       // .onDelete { //
-                         //  }
-//                        }.padding(10)
-//                        }
-                    }
-                    .navigationBarTitle("Users")
-                       .navigationBarItems(leading: deleteButton, trailing: editButton)
-                       .environment(\.editMode, self.$editMode)
-               }
-                    
-                    
-                
-                }
-            }
-        }
-                         }
-        
-        
+            Color.black
+                .edgesIgnoringSafeArea(.all)
             
+            
+            VStack{
+                
+                CustomTabView(tabs: tabs, currentTab: $loginTab, action: {}  ).padding()
+                
+                Spacer()
+                switch loginTab {
+                case .add:
+                    VStack{
+                        
+                        
+                        TextField("Name", text: $userInput.name)
+                            .padding(7)
+                            .background(Color.graySearchBakground)
+                            .cornerRadius(8)
+                            .foregroundColor(.white)
+                        
+                        Text("Pick a category")
+                        Picker(selection: $userInput.category,
+                               label: Text("Category")) {
+                            ForEach(Category.allCategories, id: \.self) { category in
+                                Text(category).foregroundColor(.white)}
+                        }
+                        .padding(.horizontal)            .background(RoundedRectangle(cornerRadius: 15)            .stroke(Color.blue, lineWidth: 1))
+                        
+                        
+                        .shadow(radius: 5)
+                        .frame(width: 150)
+                        
+                        
+                        
+                        
+                        Button("Save") {
+                            CoreDataManager.shared.saveUser(user: userInput)
+                            vm.fetchAllUsers()
+                            userInput = UserData()
+                        }
+                        .padding()
+                        .border(Color.blue)
+                        .foregroundColor(.white)
+                        
+                        Spacer()
+                    }
+                    
+                case .users:
+                    
+                    VStack{
+                        
+                        NavigationView {
+                                  
+                        List {
+                            Section(header: Text("Users").padding()) {
+                                 
+                                ForEach(vm.users, id: \.self) { user in
+                                    
+                                    NavigationLink(destination: UserDBDetails(user: user)) {
+                                        
+                                        HStack{  Text(user.name ?? "")
+                                            Spacer()
+                                            Text(user.category ?? "")
+                                                
+                                        }.foregroundColor(.white)
+                                        .padding(.horizontal)
+                                       
+                                        
+                                    }
+                                    
+                                }.onDelete{ index in
+                                    CoreDataManager.shared.deleteUser(user: vm.users[index.first!])
+                                    print("\(index.first)")
+                                    print("\(vm.users[index.first!].name)")
+                                    vm.fetchAllUsers()
+                                    }
+                                
+                                    
+                                    
+                                   
+                                
+                            }
+                            
+                            
+                            
+                        }.environment(\.colorScheme, .dark)
+                        .navigationBarItems(trailing: EditButton() )
+                           
+                        }
+                       
+                         
+                    }
+                }
+            } 
+        }
+        
+        
+    
+        
+    
+     
+//    func delete(at indexes: IndexSet) {
+//       if let first = indexes.first {
+//        vm.users.remove(at: first)
+//        vm.deleteUser(vm.users.!)
+//       }    }
+   
+   
+   
     }
     
-    private var editButton: some View {
-        if editMode == .inactive {
-            return Button(action: {
-                self.editMode = .active
-                self.selection = Set<User>()
-            }) {
-                Text("Edit")
-            }
-        }
-        else {
-            return Button(action: {
-                self.editMode = .inactive
-                self.selection = Set<User>()
-            }) {
-                Text("Done")
-            }
-        }
-    }
-    
-    private var deleteButton: some View {
-        if editMode == .inactive {
-            return Button(action: {}) {
-                Image(systemName: "")
-            }
-        } else {
-            return Button(action: deleteItems) {
-                Image(systemName: "trash")
-            }
-        }
-    }
-    
-    private func deleteItems() {
-        for id in selection {
-            if let index = users.lastIndex(where: { $0 == id })  {
-                Text("\(id)")//CoreDataManager.shared.deleteUser(name: user.nameW)
-            }
-        }
-        selection = Set<User>()
-    }
-    
-    
-    
-    
-    
-    
+//    func delete(at offsets: IndexSet) {
+//        for offset in offsets {
+//            CoreDataManager.shared.deleteUser(user: vm.users[offset])
+//            print("index \(offset.first)")
+//            print("name \(vm.users[offset.first].name)")
+//            vm.fetchAllUsers()
+//            }
+//        }
     
 }
 
@@ -164,33 +163,24 @@ struct Category {
     ]
 }
 
-struct LoginButtonContent : View {
-    var body: some View {
-        return Text("LOGIN")
-            .font(.headline)
-            //change
-            .foregroundColor(.white)
-            .padding()
-            .frame(width: 220, height: 60)
-            .background(Color.blue)
-            .cornerRadius(15.0)
-    }
-}
+
 
 
 enum TabLogin: Tab {
-        case add,remove
+        case add,users
     
     func title() -> String {
         switch self {
         case .add:
-            return "Add User"
-        case .remove:
-            return "Remove User"
+            return "Add"
+        case .users:
+            return "Users"
             
         }
     }
+    
 }
+    
     
 
 

@@ -9,17 +9,17 @@ import SwiftUI
 
 
 struct CustomTabView<T: Tab>: View {
-    
+
     var tabs: [T]
     @Binding var currentTab: T
     var action: ()-> Void
-    
+
         var body: some View {
             LazyVStack {
                 // Tab picker
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
-                        
+
                         ForEach(tabs, id: \.self) { tab in
                             VStack {
                                 Spacer()
@@ -40,24 +40,38 @@ struct CustomTabView<T: Tab>: View {
                                     .foregroundColor(tab == currentTab ? Color.red : Color.clear)
                             }
                     }
-                      
+
                 }
                     .foregroundColor(.white)
-           
+
         }
-      
+
             }
         }
-                
+
     func widthForTab<T: Tab>(_ tab: T)  -> CGFloat {
                     let string = tab.title()
                     return string.widthOfString(usingFont: .systemFont(ofSize: 16, weight: .bold))
                 }
-                
-                
-        
+
+
+
     }
-        
+   
+
+
+ 
+   
+
+
+
+
+
+
+
+
+
+
       
 struct CustomTabView_Previews: PreviewProvider {
     static var previews: some View {
