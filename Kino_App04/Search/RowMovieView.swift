@@ -20,10 +20,7 @@ struct RowMovieView: View {
                     .resizable()
                     .frame(width: proxy.size.width/3)
                     .padding(.leading, 3)
-                    .onTapGesture(perform: {
-                        appData.movieDetailToShow = movie.movieId
-                        appData.personDetailToShow = nil
-                    })
+                     
                 
                 LazyVStack(spacing: 0)   {
                 HStack{

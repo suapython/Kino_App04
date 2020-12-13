@@ -15,36 +15,30 @@ struct CustomTabView<T: Tab>: View {
     var action: ()-> Void
 
         var body: some View {
-            LazyVStack {
-                // Tab picker
+            VStack(alignment: .leading) {
+               
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
-
+                    HStack(alignment: .top, spacing: 20) {
                         ForEach(tabs, id: \.self) { tab in
-                            VStack {
-                                Spacer()
-                                // Button
-                                Button(action: {
-                                    currentTab = tab
-                                    self.action()
-                                }, label: {
+                            VStack(alignment: .leading, spacing: 5) {
+                                Button(action: {currentTab = tab
+                                                self.action()}, label: {
                                     Text(tab.title() )
                                         .font(.system(size: 16, weight: .bold))
                                         .foregroundColor(tab == currentTab ? Color.white : Color.gray)
                                 })
                                 .buttonStyle(PlainButtonStyle())
-                                .frame(width: widthForTab(tab), height: 0)
-                                // Red Bar
+                                .frame(width: widthForTab(tab), height: 20)
+                                
                                 Rectangle()
                                     .frame(width: widthForTab(tab), height: 6)
                                     .foregroundColor(tab == currentTab ? Color.red : Color.clear)
                             }
                     }
 
-                }
-                    .foregroundColor(.white)
+                }.foregroundColor(.white)
 
-        }
+                } 
 
             }
         }

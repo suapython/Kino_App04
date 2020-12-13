@@ -55,6 +55,7 @@ extension SearchVM {
     
     func getMovie(query: String) {
         let urlComponents = APIClient().makeURLComponents(path: "search/movie", queries:  ["query": query])
+        print(urlComponents.url)
         APIClient().fetchMovie(with: urlComponents)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in

@@ -18,8 +18,12 @@ struct MyList: View {
        Color.black
            .edgesIgnoringSafeArea(.all)
         VStack{
-            DisplayImageView(poster: Image("knhoscope2"), info: Text("")  )
-            .frame(height: 200)
+            Image("knhoscope2")
+                    .resizable()
+                    .scaledToFill()
+                    .clipped()
+                    .frame(height: screen.height/3)
+                    .edgesIgnoringSafeArea(.all)
            
             Text("Filmography").bold()
                 .font(.subheadline)
@@ -33,10 +37,7 @@ struct MyList: View {
                 LazyVStack {
                     ForEach(appData.myList){movie in
                         RowMovieView(movie: movie).frame(height: 75)
-                            .onTapGesture(perform: {
-                                appData.personDetailToShow = nil
-                                appData.movieDetailToShow = movie.movieId
-                            })
+                            
                     }
                 }
             }
@@ -46,11 +47,7 @@ struct MyList: View {
             
         }.foregroundColor(.white)
     
-        if appData.movieDetailToShow != nil {
-            MovieDetail(vm: MovieDetailVM(movieId: appData.movieDetailToShow!) )
-                        .animation(.easeIn)
-                        .transition(.opacity)
-                }
+        
         
     }
     }

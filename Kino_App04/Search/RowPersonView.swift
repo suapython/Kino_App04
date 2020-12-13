@@ -27,6 +27,7 @@ struct RowPersonView: View {
             VStack(alignment: .leading, spacing:0){
                 Text(person.name).bold()
                     .font(.system(size: 18))
+                    .foregroundColor(.white)
                 Text(person.job)
                     .font(.caption)
                     .foregroundColor(.gray)

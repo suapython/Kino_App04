@@ -32,8 +32,7 @@ struct TrailerView: View {
                     YouTubeWebView(videoID: video.key)
                         .frame(width: screen.width)
                 .cornerRadius(12)
-                //.padding(.horizontal, 24)
-                //.padding(.top)
+    
                 }
           }
         Spacer()

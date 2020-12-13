@@ -17,6 +17,7 @@ struct SearchView: View {
     @State var currentTab: TabSearch = .movie
     let tabs: [TabSearch] = [.movie, .person]
     
+    let screen = UIScreen.main.bounds
     
     var body: some View {
         
@@ -30,16 +31,22 @@ struct SearchView: View {
         }
  
         
-        return ZStack {
-    
-            Color.black
-                .edgesIgnoringSafeArea(.all)
+        return
             
+            NavigationView {
+                ZStack {
+                Color.black
+                    .edgesIgnoringSafeArea(.all)
                     
-            VStack(spacing: 10) {
-                        
-                        DisplayImageView(poster: Image("knhoscope2"), info: Text("")  )
-                        .frame(height: 200)
+                    VStack(alignment: .leading, spacing: 10){
+            
+            
+                Image("knhoscope2")
+                                .resizable()
+                                .scaledToFill()
+                                .clipped()
+                                .frame(height: screen.height/3)
+                                .edgesIgnoringSafeArea(.all)
                          
                 
                 CustomTabView(tabs: tabs, currentTab: $vm.searchFilter, action: {queryText = "" })
@@ -53,27 +60,98 @@ struct SearchView: View {
                         
                        Spacer()
                        
-                }
-                 
-            if appData.movieDetailToShow != nil {
+//                }
+//                 
+//            if appData.movieDetailToShow != nil {
+//                
+//                MovieDetail(vm: MovieDetailVM(movieId: appData.movieDetailToShow!) )
+//                    .animation(.easeIn)
+//                    .transition(.opacity)
+//                }
+//            
+//            if appData.personDetailToShow != nil {
+//                
+//                PersonDetail(vm: PersonDetailVM(personId: appData.personDetailToShow!))
+//                    .animation(.easeIn)
+//                    .transition(.opacity)
+//                }
+//                    
+//         }
+//         .foregroundColor(.white)
                 
-                MovieDetail(vm: MovieDetailVM(movieId: appData.movieDetailToShow!) )
-                    .animation(.easeIn)
-                    .transition(.opacity)
-                }
-            
-            if appData.personDetailToShow != nil {
+            }.navigationBarTitle(Text(""))
+            .navigationBarHidden(true)
+        }.onAppear {
+            UINavigationBar.appearance().backgroundColor = .clear
                 
-                PersonDetail(vm: PersonDetailVM(personId: appData.personDetailToShow!))
-                    .animation(.easeIn)
-                    .transition(.opacity)
-                }
+        }
+                
+                
+                
+                
+            }.onAppear {
+                UINavigationBar.appearance().backgroundColor = .clear
                     
-         }
-         .foregroundColor(.white)
-         
+            }
      }
  }
+
+
+struct SearchResults: View {
+    
+    @ObservedObject var vm: SearchVM
+    @EnvironmentObject var appData: AppData
+    
+    var body: some View {
+        
+        VStack{
+            
+            if vm.viewState == .empty {
+                Text("Your search did not have any results")
+                    .bold()
+                    .padding(.top, 150)
+            } else if vm.searchFilter == .movie {
+               
+                ScrollView(.vertical,showsIndicators: false) {
+                    VStack(spacing: 5) {
+                        ForEach(vm.movies) { movie in
+                            NavigationLink(destination:MovieDetail(vm: MovieDetailVM(movieId: movie.movieId)))
+                    
+                            {
+                            RowMovieView(movie: movie) .frame(height: 75)
+                            }
+                        }
+                    }
+                }
+                
+            } else {
+                 
+                    ScrollView(.vertical,showsIndicators: false) {
+                        VStack(spacing: 5) {
+                            ForEach(vm.people) { person in
+                                
+                                NavigationLink(
+                                    destination: PersonDetail(vm: PersonDetailVM(personId: person.personId)) ) {
+                        
+                                RowPersonView(person: person)     .frame(height: 75)
+                                }
+                        }
+                    }
+                    
+                }
+            }
+            
+        }
+    }
+}
+
+ 
+
+
+
+
+
+
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {

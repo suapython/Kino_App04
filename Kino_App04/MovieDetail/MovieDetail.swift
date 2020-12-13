@@ -23,94 +23,61 @@ struct MovieDetail: View {
         let movie = vm.movie
         
        return
-        
-         ZStack {
+        NavigationView {
+           
+            ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
-         
-           
-            VStack {
-            
-                CloseButton()
+               
+                VStack{
                 
+                  
                     
-                 ScrollView(.vertical, showsIndicators: false) {
+                    ZStack{
+                        TopImage(posterPath: movie.poster_pathM).frame(height: 100)
+                            .padding(.bottom,50)
+                    VStack {
+                    Spacer()
+                    TitleInfo(movie: vm.movie)
+
+                    RowButtons(movie: vm.movie, showingVideoPlayer: $showingVideoPlayer, isOnMyList: $vm.isOnMyList)
+
+                    CastInfo(movie: vm.movie)
+                        }
+                    .background(LinearGradient.blackOpacityGradient)
+                    .background(LinearGradient.blackOpacityGradientUp)
+                   .ignoresSafeArea(.all)
                     
-                         VStack{
-                            ZStack{
-
-                KFImage( ImagePath.original.path(poster: movie.poster_path ?? noimage ) )
-                                        .resizable()
-                                        .scaledToFill()
-                                        .clipped()
-                    .frame(width: screen.width)
-                    .padding(.top,-20)
-
-                                    VStack {
-                                        Spacer()
-
-            TitleInfo(movie: vm.movie)
-
-            RowButtons(movie: vm.movie, showingVideoPlayer: $showingVideoPlayer, isOnMyList: $vm.isOnMyList)
-
-            CastInfo(movie: vm.movie)
-                            }.foregroundColor(.white)
-                            .background(LinearGradient.blackOpacityGradient)
-                            .background(LinearGradient.blackOpacityGradientUp)
-                            }}
-                            .foregroundColor(.white)
-                            Spacer()
-                            
+                    
+                    
+                    }
                         
-            CustomTabView(tabs: tabs, currentTab: $movieTab, action: {}  ).padding()
-                             
-            switch movieTab {
-            case .cast:
-                RowCast(vm: vm  )
-            case .recommend:
-                RowMovies(movies: vm.movie.recommendationsM.movies  )
-            case .similar:
-                RowMovies(movies: vm.movie.similarM.movies )
-                             }
-            
                     
-                    
-                             
-                         }.padding(5)
- 
+                   CustomTabView(tabs: tabs, currentTab: $movieTab, action: {}  ).padding()
+                     
                 
-             }
-            .sheet(isPresented: $appData.showingVideoPlayer, content: {
-                TrailerView(videos: vm.movie.videosV )      })
-          
-        }.foregroundColor(.white)
-    }
-}
-
-
-
- 
-
-
-
-
-
-
-struct CloseButton: View {
-    
-    @EnvironmentObject var appData: AppData
-
-    
-    var body: some View {
-        HStack {
-            Spacer()
+                    switch movieTab {
+                    case .cast:
+                    RowCast(vm: vm  )
+                    case .recommend:
+                    RowMovies(movies: vm.movie.recommendationsM.movies  )
+                    case .similar:
+                    RowMovies(movies: vm.movie.similarM.movies )
+                                }
+                        
+                  
+                    
+                }.sheet(isPresented: $appData.showingVideoPlayer, content: {
+                                        TrailerView(videos: vm.movie.videosV ) })
+                                            .ignoresSafeArea(.all)
             
-            Button(action: {
-                appData.movieDetailToShow = nil
-            }, label: { Image(systemName: "xmark.circle")
-                .font(.system(size: 28))
-            })
-        }.padding(.horizontal, 22)
+            }.navigationBarTitle(Text(vm.movie.title))
+                .navigationBarHidden(true)
+        
+            }.onAppear {
+                UINavigationBar.appearance().backgroundColor = .clear
+            }
+        .padding(.bottom,20)
     }
 }
 
@@ -161,7 +128,7 @@ struct CastInfo: View {
     var movie: Movie
     
     var body: some View {
-        LazyVStack(spacing: 0)   {
+         VStack(spacing: 0)   {
             HStack{ Text("Cast:")
                 ScrollView(.horizontal){
                     Text(movie.cast.map{$0.name}.joined(separator: ", "))
@@ -188,6 +155,7 @@ struct CastInfo: View {
             
         }
         .font(.caption)
+        
     }
 }
 
@@ -196,6 +164,7 @@ struct CastInfo: View {
 
 struct MovieDetail_Previews: PreviewProvider {
    static var previews: some View {
-       MovieDetail(vm: MovieDetailVM(movieId: 11030) ).environmentObject(AppData())
+    MovieDetail(vm: MovieDetailVM(movieId: exampleMovie.movieId) ).environmentObject(AppData())
+        .environment(\.colorScheme, .dark)
    }
 }

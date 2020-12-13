@@ -15,13 +15,10 @@ struct TabContentView: View {
     
     @EnvironmentObject var appData: AppData
     
-    @State var selectedTab =  3
+    @State var selectedTab =  0
     
     
-    init() {
-        //UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().barTintColor = UIColor.black
-    }
+   
     
     var body: some View {
         
