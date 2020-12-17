@@ -9,6 +9,7 @@ import SwiftUI
 import KingfisherSwiftUI
 
 struct TopImage: View {
+    let screen = UIScreen.main.bounds
     
     var posterPath: String
    
@@ -17,9 +18,11 @@ struct TopImage: View {
         
         KFImage( ImagePath.original.path(poster: posterPath ) )
                                 .resizable()
-                                .scaledToFill()
+                               
+            .frame(width: screen.width,height: screen.height/2)
+            .scaledToFit()
                                 .clipped()
-            .edgesIgnoringSafeArea(.all)
+                              
              
     }
 }

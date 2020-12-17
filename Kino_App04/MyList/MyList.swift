@@ -18,12 +18,7 @@ struct MyList: View {
        Color.black
            .edgesIgnoringSafeArea(.all)
         VStack{
-            Image("knhoscope2")
-                    .resizable()
-                    .scaledToFill()
-                    .clipped()
-                    .frame(height: screen.height/3)
-                    .edgesIgnoringSafeArea(.all)
+            HeaderView()
            
             Text("Filmography").bold()
                 .font(.subheadline)

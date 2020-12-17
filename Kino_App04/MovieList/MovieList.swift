@@ -29,19 +29,13 @@ struct MovieList: View {
                     
                     VStack(alignment: .leading){
                         
-             Image("knhoscope2")
-                                .resizable()
-                                .scaledToFill()
-                                .clipped()
-                                .frame(height: screen.height/3)
-                                .edgesIgnoringSafeArea(.all)
-                        
-               CustomTabView(tabs: tabs, currentTab: $currentTab, action: {}).padding(.leading, 90)
-               RowMovies(movies: vm.movies[currentTab] ?? []).padding(.leading, 90)
+               HeaderView()
+               CustomTabView(tabs: tabs, currentTab: $currentTab, action: {})
+               RowMovies(movies: vm.movies[currentTab] ?? []) 
                         Spacer()
                     }
         
-                    }.navigationBarTitle(Text("Movies"))
+                    }.navigationBarTitle(Text(""))
                     .navigationBarHidden(true)
                 }.onAppear {
                     UINavigationBar.appearance().backgroundColor = .clear

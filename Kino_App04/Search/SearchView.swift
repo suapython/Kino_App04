@@ -41,45 +41,21 @@ struct SearchView: View {
                     VStack(alignment: .leading, spacing: 10){
             
             
-                Image("knhoscope2")
-                                .resizable()
-                                .scaledToFill()
-                                .clipped()
-                                .frame(height: screen.height/3)
-                                .edgesIgnoringSafeArea(.all)
+               HeaderView()
                          
                 
                 CustomTabView(tabs: tabs, currentTab: $vm.searchFilter, action: {queryText = "" })
                         
                 SearchBar(queryText: queryTextBinding)
                           //, isLoading: $vm.isLoading)
-                    .padding()
+                    
                         
                 SearchResults(vm: vm )
                 
                         
                        Spacer()
-                       
-//                }
-//                 
-//            if appData.movieDetailToShow != nil {
-//                
-//                MovieDetail(vm: MovieDetailVM(movieId: appData.movieDetailToShow!) )
-//                    .animation(.easeIn)
-//                    .transition(.opacity)
-//                }
-//            
-//            if appData.personDetailToShow != nil {
-//                
-//                PersonDetail(vm: PersonDetailVM(personId: appData.personDetailToShow!))
-//                    .animation(.easeIn)
-//                    .transition(.opacity)
-//                }
-//                    
-//         }
-//         .foregroundColor(.white)
                 
-            }.navigationBarTitle(Text(""))
+            }.navigationBarTitle(Text("Search"))
             .navigationBarHidden(true)
         }.onAppear {
             UINavigationBar.appearance().backgroundColor = .clear

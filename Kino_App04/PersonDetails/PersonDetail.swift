@@ -18,40 +18,37 @@ struct PersonDetail: View {
     
     var body: some View {
     
-        NavigationView {
+       
             ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
                 
             VStack(alignment: .leading){
             
-                
-            Image("knhoscope2")
-                    .resizable()
-                    .scaledToFill()
-                    .clipped()
-                    .frame(height: screen.height/3)
+                Image("knhoscope2")
+                                .resizable()
+                               .scaledToFill()
+                    .frame(width: screen.width)
                     .edgesIgnoringSafeArea(.all)
+           
                 
-                
-    
-            RowPersonView(person: vm.person)
-                            .frame(height:150)
-
+                RowPersonView(person: vm.person)
+             
             Text("Filmography").bold()
                             .font(.subheadline)
                             .frame(width:screen.width)
-                            .padding(10)
+                            //.padding(10)
                             .background(Color.red)
                         
             PersonResults(vm: vm )
                     
-            Spacer()
-                    
+          Spacer()
                    
                }
-            }
+        
+       
         }.onAppear {
+            UINavigationBar.appearance().shadowImage = UIImage()
             UINavigationBar.appearance().backgroundColor = .clear
         }
    }

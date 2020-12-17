@@ -23,19 +23,19 @@ struct MovieDetail: View {
         let movie = vm.movie
         
        return
-        NavigationView {
-           
+    
             ZStack {
             Color.black
                 .edgesIgnoringSafeArea(.all)
                
-                VStack{
-                
-                  
+                VStack(spacing: 0){
                     
                     ZStack{
-                        TopImage(posterPath: movie.poster_pathM).frame(height: 100)
-                            .padding(.bottom,50)
+                        KFImage( ImagePath.original.path(poster: movie.poster_pathM ) )
+                            .resizable()
+                            .frame(width: screen.width)
+                            .scaledToFit()
+                            .edgesIgnoringSafeArea(.all)
                     VStack {
                     Spacer()
                     TitleInfo(movie: vm.movie)
@@ -53,7 +53,7 @@ struct MovieDetail: View {
                     }
                         
                     
-                   CustomTabView(tabs: tabs, currentTab: $movieTab, action: {}  ).padding()
+                    CustomTabView(tabs: tabs, currentTab: $movieTab, action: {}  ).padding()
                      
                 
                     switch movieTab {
@@ -71,13 +71,14 @@ struct MovieDetail: View {
                                         TrailerView(videos: vm.movie.videosV ) })
                                             .ignoresSafeArea(.all)
             
-            }.navigationBarTitle(Text(vm.movie.title))
-                .navigationBarHidden(true)
-        
-            }.onAppear {
+            }//.navigationBarTitle(Text(vm.movie.title))
+               // .navigationBarHidden(true)
+              .onAppear {
                 UINavigationBar.appearance().backgroundColor = .clear
-            }
-        .padding(.bottom,20)
+                   
+                    
+            }.padding(.bottom,20)
+        
     }
 }
 

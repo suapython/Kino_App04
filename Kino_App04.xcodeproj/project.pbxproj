@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B513239D2584DC0F0069F6BD /* Helloworld.swift in Sources */ = {isa = PBXBuildFile; fileRef = B513239C2584DC0F0069F6BD /* Helloworld.swift */; };
 		B51323E125851DE20069F6BD /* TopImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51323E025851DE20069F6BD /* TopImage.swift */; };
+		B51323FA2586E8DC0069F6BD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51323F92586E8DC0069F6BD /* HeaderView.swift */; };
 		B56CED09256F20E0009D33D3 /* Kino_App04App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CED08256F20E0009D33D3 /* Kino_App04App.swift */; };
 		B56CED0B256F20E0009D33D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CED0A256F20E0009D33D3 /* ContentView.swift */; };
 		B56CED0D256F20E2009D33D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56CED0C256F20E2009D33D3 /* Assets.xcassets */; };
@@ -71,6 +72,7 @@
 /* Begin PBXFileReference section */
 		B513239C2584DC0F0069F6BD /* Helloworld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helloworld.swift; sourceTree = "<group>"; };
 		B51323E025851DE20069F6BD /* TopImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopImage.swift; sourceTree = "<group>"; };
+		B51323F92586E8DC0069F6BD /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		B56CED05256F20E0009D33D3 /* Kino_App04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kino_App04.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56CED08256F20E0009D33D3 /* Kino_App04App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kino_App04App.swift; sourceTree = "<group>"; };
 		B56CED0A256F20E0009D33D3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -255,7 +257,6 @@
 				B56CED56256F2B90009D33D3 /* SearchView.swift */,
 				B56CED59256F2B90009D33D3 /* SearchVM.swift */,
 				B56CED5B256F2B90009D33D3 /* RowMovieView.swift */,
-				B56CED57256F2B90009D33D3 /* RowPersonView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -271,6 +272,8 @@
 				B56CED5A256F2B90009D33D3 /* SearchBar.swift */,
 				B56CED6F256F2C9E009D33D3 /* VideoPreviewImage.swift */,
 				B5CBA84A25798EE300D83BF3 /* PopularityBadge.swift */,
+				B51323F92586E8DC0069F6BD /* HeaderView.swift */,
+				B56CED57256F2B90009D33D3 /* RowPersonView.swift */,
 			);
 			path = "Shared Views";
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				B56CED9325706052009D33D3 /* RowCast.swift in Sources */,
 				B56CED9225706052009D33D3 /* TrailerView.swift in Sources */,
 				B5CBA7692573A3FA00D83BF3 /* TabDBSearch.swift in Sources */,
+				B51323FA2586E8DC0069F6BD /* HeaderView.swift in Sources */,
 				B56CED09256F20E0009D33D3 /* Kino_App04App.swift in Sources */,
 				B56CED39256F2A0F009D33D3 /* TabApp.swift in Sources */,
 				B56CED5C256F2B90009D33D3 /* SearchView.swift in Sources */,

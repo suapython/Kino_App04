@@ -26,15 +26,16 @@ struct PersonResults: View {
         
        return
         ScrollView(.vertical,showsIndicators: false) {
-                            LazyVStack {
+            VStack(spacing: 20) {
                                 ForEach(movies, id: \.self) { movie in
-                                    HStack{                DisplayURLImage(urlPath: movie.poster_path ?? "")
-                                        .frame(width:100)
-                                    .onTapGesture(perform: {
-                                        appData.personDetailToShow = nil
-                                        appData.movieDetailToShow = movie.movieId
-                                    })
-                                        LazyVStack(spacing: 0)   {
+                                    NavigationLink(
+                                        destination: MovieDetail(vm: MovieDetailVM(movieId: movie.movieId)) )
+                                    {
+                                    HStack{
+                                        DisplayURLImage(urlPath: movie.poster_path ?? "")
+                                        .frame(width:70)
+                                    
+                                        VStack(spacing: 0)   {
                                         HStack{
                                             
                                             Text(movie.title).bold()
@@ -42,10 +43,9 @@ struct PersonResults: View {
                                              
                                             Text("(\(movie.year))")
                                                 .font(.system(size: 10))
-                                            Text("\(movie.popularityP) ")
-                                                .font(.system(size: 10))
+                                             
                                             Spacer()
-                                        }
+                                        }.lineLimit(1)
 
                                         HStack{
                                         Text(movie.overview)
@@ -54,10 +54,12 @@ struct PersonResults: View {
                                             .foregroundColor(.gray)
                                             Spacer()
                                         }
+                                            Spacer()
                                         }
                                         
-                                    } .frame(height: 75)
-                                     
+                                    }.frame(height: 100)
+                                    .foregroundColor(.white)
+                                    }
                                     
                                 }}
                             
