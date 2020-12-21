@@ -85,6 +85,8 @@ var examplePerson1 = Person(id: 1243, name: "Woody Allen", biography:"Woody Alle
 var emptyPerson = Person(id: 1243, name: " ", biography:" ", deathday: nil, birthday: " ", known_for_department:  "", popularity: 0, profile_path:  "")
 
 var exampleUser = User(context: managedObjectContext)
+
+var exampleFilm = Film(context: managedObjectContext)
  
 
  

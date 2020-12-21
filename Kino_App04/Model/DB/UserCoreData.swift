@@ -10,6 +10,8 @@ import CoreData
 
 @objc(User)
 public class User: NSManagedObject {
+    
+    var topTenArray: [Film] = []
 
 }
 
@@ -25,13 +27,14 @@ extension User {
     @NSManaged public var name: String?
     @NSManaged public var topTen: NSSet?
     
-    var topTenArray: [Film] {
+    var topTenW: [Film] {
         let set = topTen as? Set<Film> ?? []
         return set.sorted {
             $0.movieId < $1.movieId
         }
     }
 
+     
     
 }
 

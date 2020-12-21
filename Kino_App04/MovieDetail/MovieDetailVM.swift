@@ -26,7 +26,7 @@ class MovieDetailVM: ObservableObject, Identifiable  {
         getMovieDetails(movieId: movieId)
         
         isOnMyList = CoreDataManager.shared.filmExists(movieId: movieId)
-        print(isOnMyList)
+         
          
     }
     

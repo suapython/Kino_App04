@@ -47,15 +47,10 @@ struct MovieDetail: View {
                     .background(LinearGradient.blackOpacityGradient)
                     .background(LinearGradient.blackOpacityGradientUp)
                    .ignoresSafeArea(.all)
-                    
-                    
-                    
                     }
-                        
                     
                     CustomTabView(tabs: tabs, currentTab: $movieTab, action: {}  ).padding()
                      
-                
                     switch movieTab {
                     case .cast:
                     RowCast(vm: vm  )
@@ -64,16 +59,11 @@ struct MovieDetail: View {
                     case .similar:
                     RowMovies(movies: vm.movie.similarM.movies )
                                 }
-                        
-                  
-                    
                 }.sheet(isPresented: $appData.showingVideoPlayer, content: {
                                         TrailerView(videos: vm.movie.videosV ) })
                                             .ignoresSafeArea(.all)
             
-            }//.navigationBarTitle(Text(vm.movie.title))
-               // .navigationBarHidden(true)
-              .onAppear {
+            }.onAppear {
                 UINavigationBar.appearance().backgroundColor = .clear
                    
                     

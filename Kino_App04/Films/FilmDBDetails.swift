@@ -13,7 +13,7 @@ struct FilmDBDetails: View {
     
  
     @Environment(\.presentationMode) var presentationMode
-    @State private var showingDeleteAlert = false
+   
     
     @EnvironmentObject var appData: AppData
     

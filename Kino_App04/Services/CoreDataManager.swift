@@ -23,7 +23,7 @@ public class CoreDataManager {
     
     func fetchFilm(title: String) -> Film? {
         
-        var films = [Film]()
+        var films: [Film] = []
         
         let request: NSFetchRequest<Film> = Film.fetchRequest()
         request.predicate = NSPredicate(format: "title == %@", title)
@@ -40,7 +40,7 @@ public class CoreDataManager {
     
     func fetchFilm(movieId: Int) -> Film? {
         
-        var films = [Film]()
+        var films: [Film] = []
         
         let request: NSFetchRequest<Film> = Film.fetchRequest()
         request.predicate = NSPredicate(format: "movieId ==", movieId)
@@ -90,13 +90,14 @@ public class CoreDataManager {
     
     private func fetchUser(name: String) -> User? {
         
-        var users = [User]()
+        var users: [User] = []
         
         let request: NSFetchRequest<User> = User.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", name)
         
         do {
             users = try self.moc.fetch(request)
+            print("users", users)
         } catch let error as NSError {
             print(error)
         }
@@ -130,7 +131,7 @@ public class CoreDataManager {
     
     func getAllFilms() -> [Film] {
         
-        var films = [Film]()
+        var films: [Film] = []
         
         let filmRequest: NSFetchRequest<Film> = Film.fetchRequest()
         
@@ -146,12 +147,12 @@ public class CoreDataManager {
     
     func getAllUsers() -> [User] {
         
-        var users = [User]()
+        var users: [User] = []
         
         let userRequest: NSFetchRequest<User> = User.fetchRequest()
         
         do {
-            users = try self.moc.fetch(userRequest)
+            users = try self.moc.fetch(userRequest).filter { $0.name != nil }
         } catch let error as NSError {
             print(error)
         }
@@ -184,6 +185,7 @@ public class CoreDataManager {
         
         
         user.addToTopTen(film)
+        user.topTenArray.append(film)
         
         mocSave()
     }
@@ -193,6 +195,7 @@ public class CoreDataManager {
         let newUser = User(context: self.moc)
         newUser.name = user.name
         newUser.category = user.category
+       
         
         mocSave()
         

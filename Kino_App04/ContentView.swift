@@ -24,12 +24,8 @@ struct ContentView: View {
     
     var body: some View {
         
-        //FilmsDB()
-     //   MovieList().environmentObject(AppData())
-      TabContentView().environmentObject(appData).environment(\.colorScheme, .dark)
-       // PersonDetail(vm: PersonDetailVM(personId: 1243) )
-       // MovieDetail(vm: MovieDetailVM(movie: exampleMovieRowVM1), movieDetailToShow: .constant(nil))
-       // PersonDetail(vm: PersonDetailVM(personId: 1243), movieDetailToShow: .constant(nil), personDetailToShow: .constant(nil))
+       //UsersDB()
+       TabContentView().environmentObject(appData).environment(\.colorScheme, .dark)
         
     }
 }

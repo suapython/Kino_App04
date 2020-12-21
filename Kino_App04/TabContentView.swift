@@ -15,7 +15,7 @@ struct TabContentView: View {
     
     @EnvironmentObject var appData: AppData
     
-    @State var selectedTab =  0
+    @State var selectedTab =  2
     
     
    
@@ -42,16 +42,11 @@ struct TabContentView: View {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }.tag(1)
-            LoginForm()
-                .tabItem {
-                    Image(systemName: "equal")
-                    Text("Login")
-                }.tag(2)
-            FilmsDB()
+            UsersDB()
                 .tabItem {
                     Image(systemName: "film")
                     Text("Data")
-                }.tag(3)
+                }.tag(2)
             
             
              

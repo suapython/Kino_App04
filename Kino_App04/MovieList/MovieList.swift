@@ -27,9 +27,10 @@ struct MovieList: View {
                 Color.black
                     .edgesIgnoringSafeArea(.all)
                     
-                    VStack(alignment: .leading){
+                    VStack(alignment: .leading, spacing: 5){
                         
-               HeaderView()
+                HeaderView()
+                        
                CustomTabView(tabs: tabs, currentTab: $currentTab, action: {})
                RowMovies(movies: vm.movies[currentTab] ?? []) 
                         Spacer()

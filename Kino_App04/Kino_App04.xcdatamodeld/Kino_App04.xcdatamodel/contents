@@ -26,6 +26,7 @@
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="kino" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Float]"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="topTenList" optional="YES" attributeType="Transformable"/>
         <relationship name="topTen" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="topTen" inverseEntity="Film"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -35,6 +36,6 @@
     </entity>
     <elements>
         <element name="Film" positionX="-63" positionY="-18" width="128" height="253"/>
-        <element name="User" positionX="-63" positionY="9" width="128" height="118"/>
+        <element name="User" positionX="-63" positionY="9" width="128" height="133"/>
     </elements>
 </model>
